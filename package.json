@@ -1,6 +1,6 @@
 {
-  "name": "react-native-webim",
-  "version": "0.0.1",
+  "name": "webim-react-native",
+  "version": "0.0.2",
   "author": "ownikss",
   "description": "webim implementation",
   "rnpm": {
