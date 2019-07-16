@@ -1,0 +1,109 @@
+/* 
+  Localizable.strings
+  WebimClientLibrary
+
+  Created by Nikita Lazarev-Zubov on 11.12.17.
+  Copyright © 2017 Webim. All rights reserved.
+ 
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+*/
+
+
+// MARK: - Remote notifications
+
+"P.OA" = "Обращению назначен оператор: %@.";
+"P.OF" = "%@ прислал файл: %@.";
+"P.OM" = "%@ написал сообщение: %@.";
+
+
+// MARK: - StringConstants.swift
+
+// EMPTY_TABLE_VIEW_TEXT
+"EmptyChat" = "Отправьте первое сообщение, чтобы начать чат.";
+
+// REFRESH_CONTROL_TEXT
+"LoadingMessages" = "Сообщения загружаются...";
+
+// Avatar
+"SenderAvatarImage" = "Изображение аватара отправителя сообщения";
+"ShowsRatingDialog" = "Показывает окно оценки оператора.";
+
+// BackButton
+"Back" = "Закрыть экран";
+"ClosesScreen" = "Закрывает экран и возвращает на предыдущий.";
+
+// ChatClosedDialog
+"ChatClosed" = "Чат закончен.";
+"OK" = "OK";
+"ClosesRateOperatorError" = "Закрывает окно.";
+
+// CloseChatButton
+"CloseChat" = "Закрыть чат";
+"ClosesChat" = "Закрывает чат не закрывая данный экран.";
+
+// DepartmentListDialog
+"ContactTopic" = "Тема обращения";
+"ChoosesTopic" = "Выбирает данную тему для обращения";
+"Cancel" = "Отмена";
+"ClosesDialog" = "Закрывает окно.";
+
+// FileMessage
+"FileUnavailable" = "Файл недоступен.";
+
+// LeftButton
+"ChooseFile" = "Выбрать файл для отправки";
+"ShowsImagePicker" = "Показывает окно выбора изображения для отправки.";
+
+// RateOperatorErrorMessage
+"OperatorRatingFailed" = "Неудачная попытка оценить оператора";
+"OK" = "OK";
+"ClosesRateOperatorError" = "Закрывает окно.";
+"RateOperatorErrorMessage" = "Произошла неизвестная ошибка.";
+
+// RatingDialog
+"Rate" = "Оценить";
+"Cancel" = "Отмена";
+"RatesOperator" = "Оценивает оператора.";
+"ClosesRatingDialog" = "Закрывает диалог.";
+
+// SendFileErrorMessage
+"FileSendingFailed" = "Неудачная попытка отправки файла";
+"ClosesSendFileError" = "Закрывает окно.";
+"FileTooLarge" = "Размер файла превышен.";
+"FileTypeNotSupported" = "Данный тип файла не поддерживается.";
+"FileNotFound" = "Отправляемый файл не был получен.";
+"FileSendingUnknownError" = "Неизвестная ошибка при отправке файла";
+
+// SessionCreationErrorDialog
+"ClosesSessionError" = "Закрывает окно.";
+"SessionCreationFailed" = "Неудачная попытка создания сессии";
+"AccountBlocked" = "Учетная запись, с помощью которой была произведена попытка начать сессию, заблокирован. Пожалуйста, обратитесь в службу поддержки \"Webim\" или используйте другую учетную запись.";
+"VisitorBanned" = "Ваша учетная запись посетителя находится в черном списке.";
+
+// SettingsErrorDialog
+"ClosesSettingsError" = "Закрывает окно.";
+"InvalidSettings" = "Неверные данные учетной записи";
+"AccountNameEmpty" = "Название учетной записи не может быть пустым.";
+"LocationEmpty" = "Значение размещения не может быть пустым.";
+
+// ShowFileDialog
+"ImageFormatInvalid" = "Неверный формат изображения.";
+"ImageLinkInvalid" = "Ссылка недействительна.";
+"PreviewUnavailable" = "Просмотр недоступен.";
+"ClosesFilePreview" = "Закрывает окно.";

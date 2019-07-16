@@ -1,0 +1,15 @@
+{
+  "name": "webim",
+  "version": "0.0.1",
+  "private": true,
+  "author": "ownikss",
+  "description": "webim implementation",
+  "rnpm": {
+    "android": {
+      "sourceDir": "./android"
+    },
+    "ios": {
+      "sourceDir": "./ios"
+    }
+  }
+}
