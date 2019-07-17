@@ -1,4 +1,4 @@
-declare module 'webim' {
+declare module 'webim-react-native' {
   export type WebimEvents = 'NEW_MESSAGE' | 'REMOVE_MESSAGE' | 'EDIT_MESSAGE' | 'CLEAR_DIALOG';
 
   export const webimEvents: { [K in WebimEvents]: string };
