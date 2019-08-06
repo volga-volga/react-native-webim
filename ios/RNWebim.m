@@ -1,5 +1,6 @@
 
 #import "RNWebim.h"
+#import <React/RCTLog.h>
 
 @implementation webim
 
@@ -26,12 +27,15 @@ RCT_EXPORT_MODULE()
     return @[@"newMessage", @"removeMessage", @"changedMessage", @"allMessagesRemoved"];
 }
 
-RCT_EXPORT_METHOD(resumeSession:(NSString*) accountName location:(NSString*) location reject:(RCTResponseSenderBlock) reject resolve:(RCTResponseSenderBlock) resolve) {
+RCT_EXPORT_METHOD(resumeSession:(NSString*) accountName location:(NSString*) location account:(NSString*) account reject:(RCTResponseSenderBlock) reject resolve:(RCTResponseSenderBlock) resolve) {
     NSError *error = nil;
     if (webimSession == nil) {
         SessionBuilder *sessionBuilder = [Webim newSessionBuilder];
         sessionBuilder = [sessionBuilder setAccountName:accountName];
         sessionBuilder = [sessionBuilder setLocation:location];
+        if (account != nil) {
+            sessionBuilder = [sessionBuilder setVisitorFieldsJSONString:account];
+        }
         webimSession = [sessionBuilder build:&error];
         if (error) {
             reject(@[@{ @"message": [error localizedDescription]}]);

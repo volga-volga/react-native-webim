@@ -97,20 +97,23 @@ public class WebimModule extends ReactContextBaseJavaModule implements MessageLi
         return new HashMap<>();
     }
 
-    private void init(String accountName, String location) {
-        session = Webim.newSessionBuilder()
+    private void init(String accountName, String location, String account) {
+        Webim.SessionBuilder builder = Webim.newSessionBuilder()
                 .setContext(reactContext)
                 .setAccountName(accountName)
                 .setLocation(location)
                 .setPushSystem(Webim.PushSystem.FCM)
-                .setPushToken("none")
-                .build();
+                .setPushToken("none");
+        if (account != null) {
+            builder.setVisitorFieldsJson(account);
+        }
+        session = builder.build();
     }
 
     @ReactMethod
-    public void resumeSession(String accountName, String location, final Callback errorCallback, final Callback successCallback) {
+    public void resumeSession(String accountName, String location, String account, final Callback errorCallback, final Callback successCallback) {
         if (session == null) {
-            init(accountName, location);
+            init(accountName, location, account);
         }
         session.resume();
         session.getStream().startChat();

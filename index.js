@@ -19,9 +19,9 @@ function processError(e) {
 }
 
 class webim {
-  static resumeSession(accountName, location) {
+  static resumeSession(accountName, location, account) {
     return new Promise((resolve, reject) => {
-      WebimNative.resumeSession(accountName, location, e => reject(processError(e)), res => resolve(parseNativeResponse(res)));
+      WebimNative.resumeSession(accountName, location, account, e => reject(processError(e)), res => resolve(parseNativeResponse(res)));
     });
   }
 
