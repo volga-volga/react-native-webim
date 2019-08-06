@@ -91,6 +91,7 @@ See [webim documentation](https://webim.ru/kb/dev/identification/8265-id-2-0/) f
 Example:
 
 - install [react-native-crypto](https://github.com/tradle/react-native-crypto) with all dependencies and run `rn-nodeify --hack --install`
+- run `rn-nodeify --hack --install` after each `npm install` (add in postinstall script)
 
 ```js
 import './shim'; // set your path to shim.js
