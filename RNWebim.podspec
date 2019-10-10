@@ -19,8 +19,4 @@ Pod::Spec.new do |s|
   s.source_files = "ios/**/*.{h,m,swift}"
 
   s.dependency 'React'
-  s.frameworks = 'Foundation'
-  s.dependency 'SQLite.swift', '0.12.2'
-  s.dependency 'WebimClientLibrary', '3.14.2'
-
 end
