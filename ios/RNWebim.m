@@ -1,8 +1,9 @@
 
 #import "RNWebim.h"
 #import <React/RCTLog.h>
+#import "RNWebim-Swift.h" // If use see compile error at this line, to fix repeat compile second time
 
-@implementation webim
+@implementation RNWebim
 
 WebimSession *webimSession;
 MessageStream *stream;
@@ -90,7 +91,7 @@ RCT_EXPORT_METHOD(getLastMessages:(nonnull NSNumber*)limit reject:(RCTResponseSe
     NSError *err = nil;
     [tracker getLastMessagesByLimit:[limit intValue]
                          completion:^(NSArray<Message *> * _Nonnull arr) {
-                             resolve(@[@{@"messages": [self messagesToJsonArray:arr] }]);
+                            resolve(@[@{@"messages": [self messagesToJsonArray:arr] }]);
                          } error:&err];
     if (err) {
         reject(@[@{@"message": [err localizedDescription]}]);
