@@ -128,6 +128,10 @@ public final class _ObjCMessage: NSObject {
             return .OPERATOR_BUSY
         case .VISITOR:
             return .VISITOR
+        case .KEYBOARD:
+            return .KEYBOARD
+        case .KEYBOARD_RESPONSE:
+            return .KEYBOARD_RESPONSE
         }
     }
     
@@ -240,6 +244,8 @@ public enum _ObjCMessageType: Int {
     case OPERATOR
     case OPERATOR_BUSY
     case VISITOR
+    case KEYBOARD
+    case KEYBOARD_RESPONSE
 }
 
 // MARK: - MessageSendStatus

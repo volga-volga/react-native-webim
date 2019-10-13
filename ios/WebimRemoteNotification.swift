@@ -56,6 +56,8 @@ public final class _ObjCWebimRemoteNotification: NSObject {
             return .OPERATOR_MESSAGE
         case .WIDGET:
             return .WIDGET
+        case .none:
+            return .NONE
         }
     }
     
@@ -89,6 +91,7 @@ public enum _ObjCNotificationType: Int {
     case OPERATOR_FILE
     case OPERATOR_MESSAGE
     case WIDGET
+    case NONE
 }
 
 // MARK: - NotificationEvent
