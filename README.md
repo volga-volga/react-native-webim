@@ -2,7 +2,7 @@
 
 Implementation of [webim sdk](https://webim.ru/) for [react-native](https://github.com/facebook/react-native)
 
-**Important:** last tested react-native version is 59.9
+**Important:** Updated version for RN 0.60+
 
 ## Installation
 
