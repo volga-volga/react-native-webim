@@ -1,6 +1,7 @@
 
 #import "RNWebim.h"
 #import <React/RCTLog.h>
+#import "RNWebim-Swift.h"
 
 @implementation RNWebim
 
