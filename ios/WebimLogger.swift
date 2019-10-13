@@ -29,7 +29,7 @@ import WebimClientLibrary
 
 // MARK: - WebimLogger
 @objc(WebimLogger)
-protocol _ObjCWebimLogger {
+public protocol _ObjCWebimLogger {
     
     @objc(logEntry:)
     func log(entry: String)
@@ -38,17 +38,17 @@ protocol _ObjCWebimLogger {
 
 // MARK: - Protocols' wrappers
 // MARK: - WebimLogger
-final class WebimLoggerWrapper: WebimLogger {
+public final class WebimLoggerWrapper: WebimLogger {
     
     // MARK: - Properties
     private let webimLogger: _ObjCWebimLogger
     
     // MARK: - Initialization
-    init(webimLogger: _ObjCWebimLogger) {
+    public init(webimLogger: _ObjCWebimLogger) {
         self.webimLogger = webimLogger
     }
     
-    func log(entry: String) {
+    public func log(entry: String) {
         webimLogger.log(entry: entry)
     }
     

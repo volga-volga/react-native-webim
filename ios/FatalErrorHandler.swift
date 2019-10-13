@@ -29,7 +29,7 @@ import WebimClientLibrary
 
 // MARK: - FatalErrorHandler
 @objc(FatalErrorHandler)
-protocol _ObjCFatalErrorHandler {
+public protocol _ObjCFatalErrorHandler {
     
     @objc(onError:)
     func on(error: _ObjCWebimError)

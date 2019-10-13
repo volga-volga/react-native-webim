@@ -31,7 +31,7 @@ import WebimClientLibrary
 
 // MARK: - MessageListener
 @objc(MessageListener)
-protocol _ObjCMessageListener {
+public protocol _ObjCMessageListener {
     
     @objc(addedMessage:after:)
     func added(message newMessage: _ObjCMessage,
@@ -52,7 +52,7 @@ protocol _ObjCMessageListener {
 
 // MARK: - Protocols' wrappers
 // MARK: - MessageListener
-final class MessageListenerWrapper: MessageListener {
+public final class MessageListenerWrapper: MessageListener {
     
     // MARK: - Properties
     private weak var messageListener: _ObjCMessageListener?
@@ -67,21 +67,21 @@ final class MessageListenerWrapper: MessageListener {
     // MARK: - Methods
     // MARK: MessageListener methods
     
-    func added(message newMessage: Message,
+    public func added(message newMessage: Message,
                after previousMessage: Message?) {
         messageListener?.added(message: _ObjCMessage(message: newMessage),
                               after: ((previousMessage == nil) ? nil : _ObjCMessage(message: previousMessage!)))
     }
     
-    func removed(message: Message) {
+    public func removed(message: Message) {
         messageListener?.removed(message: _ObjCMessage(message: message))
     }
     
-    func removedAllMessages() {
+    public func removedAllMessages() {
         messageListener?.removedAllMessages()
     }
     
-    func changed(message oldVersion: Message,
+    public func changed(message oldVersion: Message,
                  to newVersion: Message) {
         messageListener?.changed(message: _ObjCMessage(message: oldVersion),
                                 to: _ObjCMessage(message: newVersion))

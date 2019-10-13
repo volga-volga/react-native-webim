@@ -31,14 +31,14 @@ import WebimClientLibrary
 
 // MARK: - Operator
 @objc(Operator)
-final class _ObjCOperator: NSObject {
+public final class _ObjCOperator: NSObject {
     
     // MARK: - Private
     private let `operator`: Operator
     
     
     // MARK: - Initialization
-    init(operator: Operator) {
+    public init(operator: Operator) {
         self.`operator` = `operator`
     }
     
@@ -46,17 +46,17 @@ final class _ObjCOperator: NSObject {
     // MARK: - Methods
     
     @objc(getID)
-    func getID() -> String {
+    public func getID() -> String {
         return `operator`.getID()
     }
     
     @objc(getName)
-    func getName() -> String {
+    public func getName() -> String {
         return `operator`.getName()
     }
     
     @objc(getAvatarURL)
-    func getAvatarURL() -> URL? {
+    public func getAvatarURL() -> URL? {
         return `operator`.getAvatarURL()
     }
     

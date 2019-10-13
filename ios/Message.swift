@@ -31,21 +31,21 @@ import WebimClientLibrary
 
 // MARK: - Message
 @objc(Message)
-final class _ObjCMessage: NSObject {
+public final class _ObjCMessage: NSObject {
     
     // MARK: - Properties
     private (set) var message: Message
     
     
     // MARK: - Initialization
-    init(message: Message) {
+    public init(message: Message) {
         self.message = message
     }
     
     // MARK: - Methods
     
     @objc(getAttachment)
-    func getAttachment() -> _ObjCMessageAttachment? {
+    public func getAttachment() -> _ObjCMessageAttachment? {
         if let attachment = message.getAttachment() {
             return _ObjCMessageAttachment(messageAttachment: attachment)
         }
@@ -54,7 +54,7 @@ final class _ObjCMessage: NSObject {
     }
     
     @objc(getData)
-    func getData() -> [String: Any]? {
+    public func getData() -> [String: Any]? {
         if let data = message.getData() {
             var objCData = [String: Any]()
             for key in data.keys {
@@ -70,27 +70,27 @@ final class _ObjCMessage: NSObject {
     }
     
     @objc(getID)
-    func getID() -> String {
+    public func getID() -> String {
         return message.getID()
     }
     
     @objc(getOperatorID)
-    func getOperatorID() -> String? {
+    public func getOperatorID() -> String? {
         return message.getOperatorID()
     }
     
     @objc(getSenderAvatarFullURL)
-    func getSenderAvatarFullURL() -> URL? {
+    public func getSenderAvatarFullURL() -> URL? {
         return message.getSenderAvatarFullURL()
     }
     
     @objc(getSenderName)
-    func getSenderName() -> String {
+    public func getSenderName() -> String {
         return message.getSenderName()
     }
     
     @objc(getSendStatus)
-    func getSendStatus() -> _ObjCMessageSendStatus {
+    public func getSendStatus() -> _ObjCMessageSendStatus {
         switch message.getSendStatus() {
         case .SENDING:
             return .SENDING
@@ -100,17 +100,17 @@ final class _ObjCMessage: NSObject {
     }
     
     @objc(getText)
-    func getText() -> String {
+    public func getText() -> String {
         return message.getText()
     }
     
     @objc(getTime)
-    func getTime() -> Date {
+    public func getTime() -> Date {
         return message.getTime()
     }
     
     @objc(getType)
-    func getType() -> _ObjCMessageType {
+    public func getType() -> _ObjCMessageType {
         switch message.getType() {
         case .ACTION_REQUEST:
             return .ACTION_REQUEST
@@ -132,17 +132,17 @@ final class _ObjCMessage: NSObject {
     }
     
     @objc(isEqualTo:)
-    func isEqual(to message: _ObjCMessage) -> Bool {
+    public func isEqual(to message: _ObjCMessage) -> Bool {
         return self.message.isEqual(to: message.message)
     }
     
     @objc(isReadByOperator)
-    func isReadByOperator() -> Bool {
+    public func isReadByOperator() -> Bool {
         return message.isReadByOperator()
     }
     
     @objc(canBeEdited)
-    func canBeEdited() -> Bool {
+    public func canBeEdited() -> Bool {
         return message.canBeEdited()
     }
     
@@ -150,14 +150,14 @@ final class _ObjCMessage: NSObject {
 
 // MARK: - MessageAttachment
 @objc(MessageAttachment)
-final class _ObjCMessageAttachment: NSObject {
+public final class _ObjCMessageAttachment: NSObject {
     
     // MARK: - Properties
     private let messageAttachment: MessageAttachment
     
     
     // MARK: - Initialization
-    init(messageAttachment: MessageAttachment) {
+    public init(messageAttachment: MessageAttachment) {
         self.messageAttachment = messageAttachment
     }
     
@@ -165,17 +165,17 @@ final class _ObjCMessageAttachment: NSObject {
     // MARK: - Methods
     
     @objc(getContentType)
-    func getContentType() -> String {
+    public func getContentType() -> String {
         return messageAttachment.getContentType()
     }
     
     @objc(getFileName)
-    func getFileName() -> String {
+    public func getFileName() -> String {
         return messageAttachment.getFileName()
     }
     
     @objc(getImageInfo)
-    func getImageInfo() -> _ObjCImageInfo? {
+    public func getImageInfo() -> _ObjCImageInfo? {
         if let imageInfo = messageAttachment.getImageInfo() {
             return _ObjCImageInfo(imageInfo: imageInfo)
         }
@@ -184,12 +184,12 @@ final class _ObjCMessageAttachment: NSObject {
     }
     
     @objc(getSize)
-    func getSize() -> NSNumber? {
+    public func getSize() -> NSNumber? {
         return messageAttachment.getSize() as NSNumber?
     }
     
     @objc(getURL)
-    func getURL() -> URL {
+    public func getURL() -> URL {
         return messageAttachment.getURL()
     }
     
@@ -197,14 +197,14 @@ final class _ObjCMessageAttachment: NSObject {
 
 // MARK: - ImageInfo
 @objc(ImageInfo)
-final class _ObjCImageInfo: NSObject {
+public final class _ObjCImageInfo: NSObject {
     
     // MARK: - Properties
     private let imageInfo: ImageInfo
     
     
     // MARK: - Initialization
-    init(imageInfo: ImageInfo) {
+    public init(imageInfo: ImageInfo) {
         self.imageInfo = imageInfo
     }
     
@@ -212,17 +212,17 @@ final class _ObjCImageInfo: NSObject {
     // MARK: - Methods
     
     @objc(getThumbURLString)
-    func getThumbURLString() -> URL {
+    public func getThumbURLString() -> URL {
         return imageInfo.getThumbURL()
     }
     
     @objc(getHeight)
-    func getHeight() -> NSNumber? {
+    public func getHeight() -> NSNumber? {
         return imageInfo.getHeight() as NSNumber?
     }
     
     @objc(getWidth)
-    func getWidth() -> NSNumber? {
+    public func getWidth() -> NSNumber? {
         return imageInfo.getWidth() as NSNumber?
     }
     
@@ -231,7 +231,7 @@ final class _ObjCImageInfo: NSObject {
 
 // MARK: - MessageType
 @objc(MessageType)
-enum _ObjCMessageType: Int {
+public enum _ObjCMessageType: Int {
     case ACTION_REQUEST
     case CONTACTS_REQUEST
     case FILE_FROM_OPERATOR
@@ -244,7 +244,7 @@ enum _ObjCMessageType: Int {
 
 // MARK: - MessageSendStatus
 @objc(MessageSendStatus)
-enum _ObjCMessageSendStatus: Int {
+public enum _ObjCMessageSendStatus: Int {
     case SENDING
     case SENT
 }

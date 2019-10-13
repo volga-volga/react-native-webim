@@ -6,7 +6,7 @@
 #endif
 
 #import <React/RCTEventEmitter.h>
+#import "RNWebim-Swift.h"
 
-@interface webim : RCTEventEmitter <UIImagePickerControllerDelegate, UINavigationControllerDelegate, RCTBridgeModule>
-
+@interface RNWebim : RCTEventEmitter <UIImagePickerControllerDelegate, UINavigationControllerDelegate, RCTBridgeModule, MessageListener, SendFileCompletionHandler, RateOperatorCompletionHandler>
 @end

@@ -31,14 +31,14 @@ import WebimClientLibrary
 
 // MARK: - WebimSession
 @objc(WebimSession)
-final class _ObjCWebimSession: NSObject {
+public final class _ObjCWebimSession: NSObject {
     
     // MARK: - Properties
     private let webimSession: WebimSession
     
     
     // MARK: - Initializers
-    init(webimSession: WebimSession) {
+    public init(webimSession: WebimSession) {
         self.webimSession = webimSession
     }
     
@@ -46,37 +46,37 @@ final class _ObjCWebimSession: NSObject {
     // MARK: - Methods
     
     @objc(resume:)
-    func resume() throws {
+    public func resume() throws {
         try webimSession.resume()
     }
     
     @objc(pause:)
-    func pause() throws {
+    public func pause() throws {
         try webimSession.pause()
     }
     
     @objc(destroy:)
-    func destry() throws {
+    public func destry() throws {
         try webimSession.destroy()
     }
     
     @objc(destroyWithClearVisitorData:)
-    func destroyWithClearVisitorData() throws {
+    public func destroyWithClearVisitorData() throws {
         try webimSession.destroyWithClearVisitorData()
     }
     
     @objc(getStream)
-    func getStream() -> _ObjCMessageStream {
+    public func getStream() -> _ObjCMessageStream {
         return _ObjCMessageStream(messageStream: webimSession.getStream())
     }
     
     @objc(changeLocation:error:)
-    func change(location: String) throws {
+    public func change(location: String) throws {
         try webimSession.change(location: location)
     }
     
     @objc(setDeviceToken:error:)
-    func set(deviceToken: String) throws {
+    public func set(deviceToken: String) throws {
         try webimSession.set(deviceToken: deviceToken)
     }
     

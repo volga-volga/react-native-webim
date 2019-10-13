@@ -29,7 +29,7 @@ import WebimClientLibrary
 
 // MARK: - Department
 @objc(Department)
-final class _ObjCDepartment: NSObject {
+public final class _ObjCDepartment: NSObject {
     
     // MARK: - Properties
     private let department: Department

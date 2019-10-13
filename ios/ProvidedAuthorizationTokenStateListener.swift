@@ -28,7 +28,7 @@ import Foundation
 import WebimClientLibrary
 
 @objc(ProvidedAuthorizationTokenStateListener)
-protocol _ObjCProvidedAuthorizationTokenStateListener {
+public protocol _ObjCProvidedAuthorizationTokenStateListener {
     
     @objc(updateProvidedAuthorizationToken:)
     func update(providedAuthorizationToken: String)
@@ -37,19 +37,19 @@ protocol _ObjCProvidedAuthorizationTokenStateListener {
 
 // MARK: - Protocols' wrappers
 // MARK: - ProvidedAuthorizationTokenStateListener
-final class ProvidedAuthorizationTokenStateListenerWrapper: ProvidedAuthorizationTokenStateListener {
+public final class ProvidedAuthorizationTokenStateListenerWrapper: ProvidedAuthorizationTokenStateListener {
     
     // MARK: - Properties
     private let providedAuthorizationTokenStateListener: _ObjCProvidedAuthorizationTokenStateListener
     
     // MARK: - Initialization
-    init(providedAuthorizationTokenStateListener: _ObjCProvidedAuthorizationTokenStateListener) {
+    public init(providedAuthorizationTokenStateListener: _ObjCProvidedAuthorizationTokenStateListener) {
         self.providedAuthorizationTokenStateListener = providedAuthorizationTokenStateListener
     }
     
     // MARK: - Methods
     // MARK: ProvidedAuthorizationTokenStateListener protocol methods
-    func update(providedAuthorizationToken: String) {
+    public func update(providedAuthorizationToken: String) {
         providedAuthorizationTokenStateListener.update(providedAuthorizationToken: providedAuthorizationToken)
     }
     

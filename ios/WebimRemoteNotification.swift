@@ -29,14 +29,14 @@ import WebimClientLibrary
 
 // MARK: - WebimRemoteNotification
 @objc(WebimRemoteNotification)
-final class _ObjCWebimRemoteNotification: NSObject {
+public final class _ObjCWebimRemoteNotification: NSObject {
     
     // MARK: - Properties
     private let webimRemoteNotification: WebimRemoteNotification
     
     
     // MARK: - Initialization
-    init(webimRemoteNotification: WebimRemoteNotification) {
+    public init(webimRemoteNotification: WebimRemoteNotification) {
         self.webimRemoteNotification = webimRemoteNotification
     }
     
@@ -44,7 +44,7 @@ final class _ObjCWebimRemoteNotification: NSObject {
     // MARK: - Methods
     
     @objc(getType)
-    func getType() -> _ObjCNotificationType {
+    public func getType() -> _ObjCNotificationType {
         switch webimRemoteNotification.getType() {
         case .CONTACT_INFORMATION_REQUEST:
             return .CONTACT_INFORMATION_REQUEST
@@ -60,7 +60,7 @@ final class _ObjCWebimRemoteNotification: NSObject {
     }
     
     @objc(getEvent)
-    func getEvent() -> _ObjCNotificationEvent {
+    public func getEvent() -> _ObjCNotificationEvent {
         if let event = webimRemoteNotification.getEvent() {
             switch event {
             case .ADD:
@@ -74,7 +74,7 @@ final class _ObjCWebimRemoteNotification: NSObject {
     }
     
     @objc(getParameters)
-    func getParameters() -> [String] {
+    public func getParameters() -> [String] {
         return webimRemoteNotification.getParameters()
     }
     
@@ -83,7 +83,7 @@ final class _ObjCWebimRemoteNotification: NSObject {
 
 // MARK: - NotificationType
 @objc(NotificationType)
-enum _ObjCNotificationType: Int {
+public enum _ObjCNotificationType: Int {
     case CONTACT_INFORMATION_REQUEST
     case OPERATOR_ACCEPTED
     case OPERATOR_FILE
@@ -93,7 +93,7 @@ enum _ObjCNotificationType: Int {
 
 // MARK: - NotificationEvent
 @objc(NotificationEvent)
-enum _ObjCNotificationEvent: Int {
+public enum _ObjCNotificationEvent: Int {
     case NONE
     case ADD
     case DELETE

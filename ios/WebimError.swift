@@ -31,7 +31,7 @@ import WebimClientLibrary
 
 // MARK: - WebimError
 @objc(WebimError)
-final class _ObjCWebimError: NSObject {
+public final class _ObjCWebimError: NSObject {
     
     // MARK: - Properties
     private let webimError: WebimError
@@ -71,7 +71,7 @@ final class _ObjCWebimError: NSObject {
 
 // MARK: - FatalErrorType
 @objc(FatalErrorType)
-enum _ObjCFatalErrorType: Int {
+public enum _ObjCFatalErrorType: Int {
     case ACCOUNT_BLOCKED
     case PROVIDED_VISITOR_FIELDS_EXPIRED
     case UNKNOWN

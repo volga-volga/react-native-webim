@@ -31,14 +31,14 @@ import WebimClientLibrary
 
 // MARK: - MessageTracker
 @objc(MessageTracker)
-final class _ObjCMessageTracker: NSObject {
+public final class _ObjCMessageTracker: NSObject {
     
     // MARK: - Properties
     private let messageTracker: MessageTracker
     
     
     // MARK: - Initialization
-    init(messageTracker: MessageTracker) {
+    public init(messageTracker: MessageTracker) {
         self.messageTracker = messageTracker
     }
     
@@ -46,7 +46,7 @@ final class _ObjCMessageTracker: NSObject {
     // MARK: - Methods
     
     @objc(getLastMessagesByLimit:completion:error:)
-    func getLastMessages(byLimit limitOfMessages: Int,
+    public func getLastMessages(byLimit limitOfMessages: Int,
                          completion: @escaping (_ result: [_ObjCMessage]) -> ()) throws {
         try messageTracker.getLastMessages(byLimit: limitOfMessages) { messages in
             var objCMessages = [_ObjCMessage]()
@@ -58,7 +58,7 @@ final class _ObjCMessageTracker: NSObject {
     }
     
     @objc(getNextMessagesByLimit:completion:error:)
-    func getNextMessages(byLimit limitOfMessages: Int,
+    public func getNextMessages(byLimit limitOfMessages: Int,
                          completion: @escaping ([_ObjCMessage]) -> ()) throws {
         try messageTracker.getNextMessages(byLimit: limitOfMessages) { messages in
             var objCMessages = [_ObjCMessage]()
@@ -70,7 +70,7 @@ final class _ObjCMessageTracker: NSObject {
     }
     
     @objc(getAllMessagesWithCompletion:error:)
-    func getAllMessages(completion: @escaping (_ result: [_ObjCMessage]) -> ()) throws {
+    public func getAllMessages(completion: @escaping (_ result: [_ObjCMessage]) -> ()) throws {
         try messageTracker.getAllMessages() { messages in
             var objCMessages = [_ObjCMessage]()
             for message in messages {
@@ -81,12 +81,12 @@ final class _ObjCMessageTracker: NSObject {
     }
     
     @objc(resetToMessage:error:)
-    func resetTo(message: _ObjCMessage) throws {
+    public func resetTo(message: _ObjCMessage) throws {
         try messageTracker.resetTo(message: message.message)
     }
     
     @objc(destroy:)
-    func destroy() throws {
+    public func destroy() throws {
         try messageTracker.destroy()
     }
     

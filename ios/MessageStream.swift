@@ -31,7 +31,7 @@ import WebimClientLibrary
 
 // MARK: - MessageStream
 @objc(MessageStream)
-final class _ObjCMessageStream: NSObject {
+public final class _ObjCMessageStream: NSObject {
     
     // MARK: - Properties
     private let messageStream: MessageStream
@@ -61,7 +61,7 @@ final class _ObjCMessageStream: NSObject {
     // MARK: - Methods
     
     @objc(getVisitSessionState)
-    func getVisitSessionState() -> _ObjCVisitSessionState {
+    public func getVisitSessionState() -> _ObjCVisitSessionState {
         switch messageStream.getVisitSessionState() {
         case .CHAT:
             return .CHAT
@@ -79,7 +79,7 @@ final class _ObjCMessageStream: NSObject {
     }
     
     @objc(getChatState)
-    func getChatState() -> _ObjCChatState {
+    public func getChatState() -> _ObjCChatState {
         switch messageStream.getChatState() {
         case .CHATTING:
             return .CHATTING
@@ -101,17 +101,17 @@ final class _ObjCMessageStream: NSObject {
     }
     
     @objc(getUnreadByOperatorTimestamp)
-    func getUnreadByOperatorTimestamp() -> Date? {
+    public func getUnreadByOperatorTimestamp() -> Date? {
         return messageStream.getUnreadByOperatorTimestamp()
     }
     
     @objc(getUnreadByVisitorTimestamp)
-    func getUnreadByVisitorTimestamp() -> Date? {
+    public func getUnreadByVisitorTimestamp() -> Date? {
         return messageStream.getUnreadByVisitorTimestamp()
     }
     
     @objc(getDepartmentList)
-    func getDepartmentList() -> [_ObjCDepartment]? {
+    public func getDepartmentList() -> [_ObjCDepartment]? {
         if let departmentList = messageStream.getDepartmentList() {
             var objCDepartmentList = [_ObjCDepartment]()
             for department in departmentList {
@@ -126,12 +126,12 @@ final class _ObjCMessageStream: NSObject {
     }
     
     @objc(getLocationSettings)
-    func getLocationSettings() -> _ObjCLocationSettings {
+    public func getLocationSettings() -> _ObjCLocationSettings {
         return _ObjCLocationSettings(locationSettings: messageStream.getLocationSettings())
     }
     
     @objc(getCurrentOperator)
-    func getCurrentOperator() -> _ObjCOperator? {
+    public func getCurrentOperator() -> _ObjCOperator? {
         if let `operator` = messageStream.getCurrentOperator() {
             return _ObjCOperator(operator: `operator`)
         }
@@ -140,12 +140,12 @@ final class _ObjCMessageStream: NSObject {
     }
     
     @objc(getLastRatingOfOperatorWithID:)
-    func getLastRatingOfOperatorWith(id: String) -> Int {
+    public func getLastRatingOfOperatorWith(id: String) -> Int {
         return messageStream.getLastRatingOfOperatorWith(id: id)
     }
     
     @objc(rateOperatorWithID:byRating:completionHandler:error:)
-    func rateOperatorWith(id: String?,
+    public func rateOperatorWith(id: String?,
                           byRating rating: Int,
                           completionHandler: _ObjCRateOperatorCompletionHandler) throws {
         try messageStream.rateOperatorWith(id: id,
@@ -154,55 +154,55 @@ final class _ObjCMessageStream: NSObject {
     }
     
     @objc(respondSentryCall:error:)
-    func respondSentryCall(id: String) throws {
+    public func respondSentryCall(id: String) throws {
         try respondSentryCall(id: id)
         
     }
     
     @objc(startChat:)
-    func startChat() throws {
+    public func startChat() throws {
         try messageStream.startChat()
     }
     
     @objc(startChatWithDepartmentKey:error:)
-    func startChat(departmentKey: String?) throws {
+    public func startChat(departmentKey: String?) throws {
         try messageStream.startChat(departmentKey: departmentKey)
     }
     
     @objc(startChatWithCustomFields:error:)
-    func startChat(customFields: String?) throws {
+    public func startChat(customFields: String?) throws {
         try messageStream.startChat(customFields: customFields)
     }
     
     
     @objc(startChatWithFirstQuestion:error:)
-    func startChat(firstQuestion: String?) throws {
+    public func startChat(firstQuestion: String?) throws {
         try messageStream.startChat(firstQuestion: firstQuestion)
     }
     
     @objc(startChatWithDepartmentKey:firstQuestion:error:)
-    func startChat(departmentKey: String?,
+    public func startChat(departmentKey: String?,
                    firstQuestion: String?) throws {
         try messageStream.startChat(departmentKey: departmentKey,
                                     firstQuestion: firstQuestion)
     }
     
     @objc(startChatWithFirstQuestion:customFields:error:)
-    func startChat(firstQuestion: String?,
+    public func startChat(firstQuestion: String?,
                    customFields: String?) throws {
         try messageStream.startChat(firstQuestion: firstQuestion,
                                     customFields: customFields)
     }
     
     @objc(startChatWithDepartmentKey:customFields:error:)
-    func startChat(departmentKey: String?,
+    public func startChat(departmentKey: String?,
                    customFields: String?) throws {
         try messageStream.startChat(departmentKey: departmentKey,
                                     customFields: customFields)
     }
     
     @objc(startChatWithDepartmentKey:firstQuestion:customFields:error:)
-    func startChat(departmentKey: String?,
+    public func startChat(departmentKey: String?,
                    firstQuestion: String?,
                    customFields: String?) throws {
         try messageStream.startChat(departmentKey: departmentKey,
@@ -211,27 +211,27 @@ final class _ObjCMessageStream: NSObject {
     }
     
     @objc(closeChat:)
-    func closeChat() throws {
+    public func closeChat() throws {
         try messageStream.closeChat()
     }
     
     @objc(setVisitorTypingDraftMessage:error:)
-    func setVisitorTyping(draftMessage: String?) throws {
+    public func setVisitorTyping(draftMessage: String?) throws {
         try messageStream.setVisitorTyping(draftMessage: draftMessage)
     }
     
     @objc(setPrechatFields:error:)
-    func set(prechatFields: String) throws {
+    public func set(prechatFields: String) throws {
         try messageStream.set(prechatFields: prechatFields)
     }
     
     @objc(sendMessage:error:)
-    func send(message: String) throws -> String {
+    public func send(message: String) throws -> String {
         return try messageStream.send(message: message)
     }
     
     @objc(sendMessage:data:completionHandler:error:)
-    func send(message: String,
+    public func send(message: String,
               data: [String: Any]?,
               completionHandler: _ObjCDataMessageCompletionHandler?) throws -> String {
         return try messageStream.send(message: message,
@@ -240,14 +240,14 @@ final class _ObjCMessageStream: NSObject {
     }
     
     @objc(sendMessage:isHintQuestion:error:)
-    func send(message: String,
+    public func send(message: String,
               isHintQuestion: Bool) throws -> String {
         return try messageStream.send(message: message,
                                       isHintQuestion: isHintQuestion)
     }
     
     @objc(sendFile:filename:mimeType:completionHandler:error:)
-    func send(file: Data,
+    public func send(file: Data,
               filename: String,
               mimeType: String,
               completionHandler: _ObjCSendFileCompletionHandler?) throws -> String {
@@ -258,7 +258,7 @@ final class _ObjCMessageStream: NSObject {
     }
     
     @objc(editMessage:text:completionHandler:error:)
-    func edit(message: _ObjCMessage,
+    public func edit(message: _ObjCMessage,
               text: String,
               completionHandler: _ObjCEditMessageCompletionHandler?) throws -> NSNumber {
         let canBeEdited = try messageStream.edit(message: message.message,
@@ -272,7 +272,7 @@ final class _ObjCMessageStream: NSObject {
     }
     
     @objc(deleteMessage:completionHandler:error:)
-    func delete(message: _ObjCMessage,
+    public func delete(message: _ObjCMessage,
                 completionHandler: _ObjCDeleteMessageCompletionHandler?) throws -> NSNumber {
         let canBeEdited = try messageStream.delete(message: message.message,
                                                completionHandler: ((completionHandler == nil) ? nil : DeleteMessageCompletionHandlerWrapper(deleteMessageCompletionHandler: completionHandler!)))
@@ -284,82 +284,82 @@ final class _ObjCMessageStream: NSObject {
     }
     
     @objc(setChatRead:)
-    func setChatRead() throws {
+    public func setChatRead() throws {
         try messageStream.setChatRead()
     }
     
     @objc(newMessageTrackerWithMessageListener:error:)
-    func newMessageTracker(messageListener: _ObjCMessageListener) throws -> _ObjCMessageTracker {
+    public func newMessageTracker(messageListener: _ObjCMessageListener) throws -> _ObjCMessageTracker {
         let wrapper = MessageListenerWrapper(messageListener: messageListener)
         messageListenerWrapper = wrapper
         return try _ObjCMessageTracker(messageTracker: messageStream.newMessageTracker(messageListener: wrapper))
     }
     
     @objc(setVisitSessionStateListener:)
-    func set(visitSessionStateListener: _ObjCVisitSessionStateListener) {
+    public func set(visitSessionStateListener: _ObjCVisitSessionStateListener) {
         let wrapper = VisitSessionStateListenerWrapper(visitSessionStateListener: visitSessionStateListener)
         visitSessionStateListenerWrapper = wrapper
         messageStream.set(visitSessionStateListener: wrapper)
     }
     
     @objc(setChatStateListener:)
-    func set(chatStateListener: _ObjCChatStateListener) {
+    public func set(chatStateListener: _ObjCChatStateListener) {
         let wrapper = ChatStateListenerWrapper(chatStateListener: chatStateListener)
         chatStateListenerWrapper = wrapper
         messageStream.set(chatStateListener: wrapper)
     }
     
     @objc(setCurrentOperatorChangeListener:)
-    func set(currentOperatorChangeListener: _ObjCCurrentOperatorChangeListener) {
+    public func set(currentOperatorChangeListener: _ObjCCurrentOperatorChangeListener) {
         let wrapper = CurrentOperatorChangeListenerWrapper(currentOperatorChangeListener: currentOperatorChangeListener)
         currentOperatorChangeListenerWrapper = wrapper
         messageStream.set(currentOperatorChangeListener: wrapper)
     }
     
     @objc(setDepartmentListChangeListener:)
-    func set(departmentListChangeListener: _ObjCDepartmentListChangeListener) {
+    public func set(departmentListChangeListener: _ObjCDepartmentListChangeListener) {
         let wrapper = DepartmentListChangeListenerWrapper(departmentListChangeListener: departmentListChangeListener)
         departmentListChangeListenerWrapper = wrapper
         messageStream.set(departmentListChangeListener: wrapper)
     }
     
     @objc(LocationSettingsChangeListener:)
-    func set(locationSettingsChangeListener: _ObjCLocationSettingsChangeListener) {
+    public func set(locationSettingsChangeListener: _ObjCLocationSettingsChangeListener) {
         let wrapper = LocationSettingsChangeListenerWrapper(locationSettingsChangeListener: locationSettingsChangeListener)
         locationSettingsChangeListenerWrapper = wrapper
         messageStream.set(locationSettingsChangeListener: wrapper)
     }
     
     @objc(setOperatorTypingListener:)
-    func set(operatorTypingListener: _ObjCOperatorTypingListener) {
+    public func set(operatorTypingListener: _ObjCOperatorTypingListener) {
         let wrapper = OperatorTypingListenerWrapper(operatorTypingListener: operatorTypingListener)
         operatorTypingListenerWrapper = wrapper
         messageStream.set(operatorTypingListener: wrapper)
     }
     
     @objc(setOnlineStatusChangeListener:)
-    func set(onlineStatusChangeListener: _ObjCOnlineStatusChangeListener) {
+    public func set(onlineStatusChangeListener: _ObjCOnlineStatusChangeListener) {
         let wrapper = OnlineStatusChangeListenerWrapper(onlineStatusChangeListener: onlineStatusChangeListener)
         onlineStatusChangeListenerWrapper = wrapper
         messageStream.set(onlineStatusChangeListener: wrapper)
     }
     
     @objc(setUnreadByOperatorTimestampChangeListener:)
-    func set(unreadByOperatorTimestampChangeListener: _ObjCUnreadByOperatorTimestampChangeListener) {
+    public func set(unreadByOperatorTimestampChangeListener: _ObjCUnreadByOperatorTimestampChangeListener) {
         let wrapper = UnreadByOperatorTimestampChangeListenerWrapper(unreadByOperatorTimestampChangeListener: unreadByOperatorTimestampChangeListener)
         unreadByOperatorTimestampChangeListenerWrapper = wrapper
         messageStream.set(unreadByOperatorTimestampChangeListener: wrapper)
     }
     
     @objc(setUnreadByVisitorTimestampChangeListener:)
-    func set(unreadByVisitorTimestampChangeListener: _ObjCUnreadByVisitorTimestampChangeListener) {
+    public func set(unreadByVisitorTimestampChangeListener: _ObjCUnreadByVisitorTimestampChangeListener) {
         let wrapper = UnreadByVisitorTimestampChangeListenerWrapper(unreadByVisitorTimestampChangeListener: unreadByVisitorTimestampChangeListener)
         unreadByVisitorTimestampChangeListenerWrapper = wrapper
         messageStream.set(unreadByVisitorTimestampChangeListener: wrapper)
     }
     
     @objc(setUnreadByVisitorMessageCountChangeListener:)
-    func set(unreadByVisitorMessageCountChangeListener: _ObjCUnreadByVisitorMessageCountChangeListener) {
+    public func set(unreadByVisitorMessageCountChangeListener: _ObjCUnreadByVisitorMessageCountChangeListener) {
         let wrapper = UnreadByVisitorMessageCountChangeListenerWrapper(unreadByVisitorMessageCountChangeListener: unreadByVisitorMessageCountChangeListener)
         unreadByVisitorMessageCountChangeListenerWrapper = wrapper
         messageStream.set(unreadByVisitorMessageCountChangeListener: wrapper)
@@ -369,7 +369,7 @@ final class _ObjCMessageStream: NSObject {
 
 // MARK: - LocationSettings
 @objc(LocationSettings)
-final class _ObjCLocationSettings: NSObject {
+public final class _ObjCLocationSettings: NSObject {
     
     // MARK: - Properties
     private let locationSettings: LocationSettings
@@ -390,7 +390,7 @@ final class _ObjCLocationSettings: NSObject {
 
 // MARK: - DataMessageCompletionHandler
 @objc(DataMessageCompletionHandler)
-protocol _ObjCDataMessageCompletionHandler {
+public protocol _ObjCDataMessageCompletionHandler {
     
     @objc(onSuccessWithMessageID:)
     func onSuccess(messageID: String)
@@ -403,7 +403,7 @@ protocol _ObjCDataMessageCompletionHandler {
 
 // MARK: - EditMessageCompletionHandler
 @objc(EditMessageCompletionHandler)
-protocol _ObjCEditMessageCompletionHandler {
+public protocol _ObjCEditMessageCompletionHandler {
     
     @objc(onSuccessWithMessageID:)
     func onSuccess(messageID: String)
@@ -416,7 +416,7 @@ protocol _ObjCEditMessageCompletionHandler {
 
 // MARK: - DeleteMessageCompletionHandler
 @objc(DeleteMessageCompletionHandler)
-protocol _ObjCDeleteMessageCompletionHandler {
+public protocol _ObjCDeleteMessageCompletionHandler {
     
     @objc(onSuccessWithMessageID:)
     func onSuccess(messageID: String)
@@ -429,7 +429,7 @@ protocol _ObjCDeleteMessageCompletionHandler {
 
 // MARK: - SendFileCompletionHandler
 @objc(SendFileCompletionHandler)
-protocol _ObjCSendFileCompletionHandler {
+public protocol _ObjCSendFileCompletionHandler {
     
     @objc(onSuccessWithMessageID:)
     func onSuccess(messageID: String)
@@ -442,7 +442,7 @@ protocol _ObjCSendFileCompletionHandler {
 
 // MARK: - RateOperatorCompletionHandler
 @objc(RateOperatorCompletionHandler)
-protocol _ObjCRateOperatorCompletionHandler {
+public protocol _ObjCRateOperatorCompletionHandler {
     
     @objc(onSuccess)
     func onSuccess()
@@ -454,7 +454,7 @@ protocol _ObjCRateOperatorCompletionHandler {
 
 // MARK: - VisitSessionStateListener
 @objc(VisitSessionStateListener)
-protocol _ObjCVisitSessionStateListener {
+public protocol _ObjCVisitSessionStateListener {
     
     @objc(changedState:to:)
     func changed(state previousState: _ObjCVisitSessionState,
@@ -464,7 +464,7 @@ protocol _ObjCVisitSessionStateListener {
 
 // MARK: - ChatStateListener
 @objc(ChatStateListener)
-protocol _ObjCChatStateListener {
+public protocol _ObjCChatStateListener {
     
     @objc(changedState:to:)
     func changed(state previousState: _ObjCChatState,
@@ -474,7 +474,7 @@ protocol _ObjCChatStateListener {
 
 // MARK: - CurrentOperatorChangeListener
 @objc(CurrentOperatorChangeListener)
-protocol _ObjCCurrentOperatorChangeListener {
+public protocol _ObjCCurrentOperatorChangeListener {
     
     @objc(changedOperator:to:)
     func changed(operator previousOperator: _ObjCOperator?,
@@ -484,7 +484,7 @@ protocol _ObjCCurrentOperatorChangeListener {
 
 // MARK: - DepartmentListChangeListener
 @objc(DepartmentListChangeListener)
-protocol _ObjCDepartmentListChangeListener {
+public protocol _ObjCDepartmentListChangeListener {
     
     @objc(receivedDepartmentList:)
     func received(departmentList: [_ObjCDepartment])
@@ -493,7 +493,7 @@ protocol _ObjCDepartmentListChangeListener {
 
 // MARK: - LocationSettingsChangeListener
 @objc(LocationSettingsChangeListener)
-protocol _ObjCLocationSettingsChangeListener {
+public protocol _ObjCLocationSettingsChangeListener {
     
     @objc(changedLocationSettings:to:)
     func changed(locationSettings previousLocationSettings: _ObjCLocationSettings,
@@ -503,7 +503,7 @@ protocol _ObjCLocationSettingsChangeListener {
 
 // MARK: - OperatorTypingListener
 @objc(OperatorTypingListener)
-protocol _ObjCOperatorTypingListener {
+public protocol _ObjCOperatorTypingListener {
     
     @objc(onOperatorTypingStateChangedTo:)
     func onOperatorTypingStateChanged(isTyping: Bool)
@@ -512,7 +512,7 @@ protocol _ObjCOperatorTypingListener {
 
 // MARK: - OnlineStatusChangeListener
 @objc(SessionOnlineStatusChangeListener)
-protocol _ObjCOnlineStatusChangeListener {
+public protocol _ObjCOnlineStatusChangeListener {
     
     @objc(changedOnlineStatus:to:)
     func changed(onlineStatus previousOnlineStatus: _ObjCOnlineStatus,
@@ -522,7 +522,7 @@ protocol _ObjCOnlineStatusChangeListener {
 
 // MARK: - UnreadByOperatorTimestampChangeListener
 @objc(UnreadByOperatorTimestampChangeListener)
-protocol _ObjCUnreadByOperatorTimestampChangeListener {
+public protocol _ObjCUnreadByOperatorTimestampChangeListener {
     
     @objc(changedUnreadByOperatorTimestampTo:)
     func changedUnreadByOperatorTimestampTo(newValue: Date?)
@@ -531,7 +531,7 @@ protocol _ObjCUnreadByOperatorTimestampChangeListener {
 
 // MARK: - UnreadByVisitorTimestampChangeListener
 @objc(UnreadByVisitorTimestampChangeListener)
-protocol _ObjCUnreadByVisitorTimestampChangeListener {
+public protocol _ObjCUnreadByVisitorTimestampChangeListener {
     
     @objc(changedUnreadByVisitorTimestampTo:)
     func changedUnreadByVisitorTimestampTo(newValue: Date?)
@@ -540,7 +540,7 @@ protocol _ObjCUnreadByVisitorTimestampChangeListener {
 
 // MARK: - UnreadByVisitorMessageCountChangeListener
 @objc(UnreadByVisitorMessageCountChangeListener)
-protocol _ObjCUnreadByVisitorMessageCountChangeListener {
+public protocol _ObjCUnreadByVisitorMessageCountChangeListener {
     
     @objc(changedUnreadByVisitorMessageCountTo:)
     func changedUnreadByVisitorMessageCountTo(newValue: Int)
@@ -549,7 +549,7 @@ protocol _ObjCUnreadByVisitorMessageCountChangeListener {
 
 // MARK: - ChatState
 @objc(ChatState)
-enum _ObjCChatState: Int {
+public enum _ObjCChatState: Int {
     case CHATTING
     case CHATTING_WITH_ROBOT
     case CLOSED_BY_OPERATOR
@@ -562,7 +562,7 @@ enum _ObjCChatState: Int {
 
 // MARK: - OnlineStatus
 @objc(OnlineStatus)
-enum _ObjCOnlineStatus: Int {
+public enum _ObjCOnlineStatus: Int {
     case BUSY_OFFLINE
     case BUSY_ONLINE
     case OFFLINE
@@ -572,7 +572,7 @@ enum _ObjCOnlineStatus: Int {
 
 // MARK: - VisitSessionState
 @objc(VisitSessionState)
-enum _ObjCVisitSessionState: Int {
+public enum _ObjCVisitSessionState: Int {
     case CHAT
     case DEPARTMENT_SELECTION
     case IDLE
@@ -583,7 +583,7 @@ enum _ObjCVisitSessionState: Int {
 
 // MARK: - DataMessageError
 @objc(DataMessageError)
-enum _ObjCDataMessageError: Int, Error {
+public enum _ObjCDataMessageError: Int, Error {
     case QUOTED_MESSAGE_CANNOT_BE_REPLIED
     case QUOTED_MESSAGE_FROM_ANOTHER_VISITOR
     case QUOTED_MESSAGE_MULTIPLE_IDS
@@ -594,7 +594,7 @@ enum _ObjCDataMessageError: Int, Error {
 
 // MARK: - EditMessageError
 @objc(EditMessageError)
-enum _ObjCEditMessageError: Int, Error {
+public enum _ObjCEditMessageError: Int, Error {
     case UNKNOWN
     case NOT_ALLOWED
     case MESSAGE_EMPTY
@@ -605,7 +605,7 @@ enum _ObjCEditMessageError: Int, Error {
 
 // MARK: - DeleteMessageError
 @objc(DeleteMessageError)
-enum _ObjCDeleteMessageError: Int, Error {
+public enum _ObjCDeleteMessageError: Int, Error {
     case UNKNOWN
     case NOT_ALLOWED
     case MESSAGE_NOT_OWNED
@@ -614,7 +614,7 @@ enum _ObjCDeleteMessageError: Int, Error {
 
 // MARK: - SendFileError
 @objc(SendFileError)
-enum _ObjCSendFileError: Int, Error {
+public enum _ObjCSendFileError: Int, Error {
     case FILE_SIZE_EXCEEDED
     case FILE_TYPE_NOT_ALLOWED
     case UPLOADED_FILE_NOT_FOUND
@@ -623,7 +623,7 @@ enum _ObjCSendFileError: Int, Error {
 
 // MARK: - RateOperatorError
 @objc(RateOperatorError)
-enum _ObjCRateOperatorError: Int, Error {
+public enum _ObjCRateOperatorError: Int, Error {
     case NO_CHAT
     case WRONG_OPERATOR_ID
 }

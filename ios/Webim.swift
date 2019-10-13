@@ -28,20 +28,19 @@
 import Foundation
 import WebimClientLibrary
 
-
 // MARK: - Webim
 @objc(Webim)
-final class _ObjCWebim: NSObject {
+public final class _ObjCWebim: NSObject {
     
     // MARK: - Methods
     
     @objc
-    static func newSessionBuilder() -> _ObjCSessionBuilder {
+    public static func newSessionBuilder() -> _ObjCSessionBuilder {
         return _ObjCSessionBuilder(sessionBuilder: Webim.newSessionBuilder())
     }
     
     @objc(parseRemoteNotification:)
-    static func parse(remoteNotification: [AnyHashable: Any]) -> _ObjCWebimRemoteNotification? {
+    public static func parse(remoteNotification: [AnyHashable: Any]) -> _ObjCWebimRemoteNotification? {
         if let webimRemoteNotification = Webim.parse(remoteNotification: remoteNotification) {
             return _ObjCWebimRemoteNotification(webimRemoteNotification: webimRemoteNotification)
         } else {
@@ -66,7 +65,7 @@ final class _ObjCWebim: NSObject {
     
     // MARK: - RemoteNotificationSystem
     @objc(RemoteNotificationSystem)
-    enum _ObjCRemoteNotificationSystem: Int {
+    public enum _ObjCRemoteNotificationSystem: Int {
         case APNS
         case NONE
     }
@@ -75,7 +74,7 @@ final class _ObjCWebim: NSObject {
 
 // MARK: - SessionBuilder
 @objc(SessionBuilder)
-final class _ObjCSessionBuilder: NSObject {
+public final class _ObjCSessionBuilder: NSObject {
     
     // MARK: - Properties
     private (set) var sessionBuilder: SessionBuilder
@@ -91,49 +90,49 @@ final class _ObjCSessionBuilder: NSObject {
     // MARK: - Methods
     
     @objc(setAccountName:)
-    func set(accountName: String) -> _ObjCSessionBuilder {
+    public func set(accountName: String) -> _ObjCSessionBuilder {
         sessionBuilder = sessionBuilder.set(accountName: accountName)
         
         return self
     }
     
     @objc(setLocation:)
-    func set(location: String) -> _ObjCSessionBuilder {
+    public func set(location: String) -> _ObjCSessionBuilder {
         sessionBuilder = sessionBuilder.set(location: location)
         
         return self
     }
     
     @objc(setPrechat:)
-    func set(prechat: String) -> _ObjCSessionBuilder {
+    public func set(prechat: String) -> _ObjCSessionBuilder {
         sessionBuilder = sessionBuilder.set(prechat: prechat)
         
         return self
     }
     
     @objc(setAppVersion:)
-    func set(appVersion: String) -> _ObjCSessionBuilder {
+    public func set(appVersion: String) -> _ObjCSessionBuilder {
         sessionBuilder = sessionBuilder.set(appVersion: appVersion)
         
         return self
     }
     
     @objc(setVisitorFieldsJSONString:)
-    func set(visitorFieldsJSONString: String) -> _ObjCSessionBuilder {
+    public func set(visitorFieldsJSONString: String) -> _ObjCSessionBuilder {
         sessionBuilder = sessionBuilder.set(visitorFieldsJSONString: visitorFieldsJSONString)
         
         return self
     }
     
     @objc(setVisitorFieldsJSONData:)
-    func set(visitorFieldsJSONData: Data) -> _ObjCSessionBuilder {
+    public func set(visitorFieldsJSONData: Data) -> _ObjCSessionBuilder {
         sessionBuilder = sessionBuilder.set(visitorFieldsJSONData: visitorFieldsJSONData)
         
         return self
     }
     
     @objc(setProvidedAuthorizationTokenStateListener:providedAuthorizationToken:)
-    func set(providedAuthorizationTokenStateListener: _ObjCProvidedAuthorizationTokenStateListener,
+    public func set(providedAuthorizationTokenStateListener: _ObjCProvidedAuthorizationTokenStateListener,
              providedAuthorizationToken: String? = nil) -> _ObjCSessionBuilder {
         sessionBuilder = sessionBuilder.set(providedAuthorizationTokenStateListener: ProvidedAuthorizationTokenStateListenerWrapper(providedAuthorizationTokenStateListener: providedAuthorizationTokenStateListener),
                                             providedAuthorizationToken: providedAuthorizationToken)
@@ -142,21 +141,21 @@ final class _ObjCSessionBuilder: NSObject {
     }
     
     @objc(setPageTitle:)
-    func set(pageTitle: String) -> _ObjCSessionBuilder {
+    public func set(pageTitle: String) -> _ObjCSessionBuilder {
         sessionBuilder = sessionBuilder.set(pageTitle: pageTitle)
         
         return self
     }
     
     @objc(setFatalErrorHandler:)
-    func set(fatalErrorHandler: _ObjCFatalErrorHandler) -> _ObjCSessionBuilder {
+    public func set(fatalErrorHandler: _ObjCFatalErrorHandler) -> _ObjCSessionBuilder {
         sessionBuilder = sessionBuilder.set(fatalErrorHandler: FatalErrorHandlerWrapper(fatalErrorHandler: fatalErrorHandler))
         
         return self
     }
     
     @objc(setRemoteNotificationSystem:)
-    func set(remoteNotificationSystem: _ObjCWebim._ObjCRemoteNotificationSystem) -> _ObjCSessionBuilder {
+    public func set(remoteNotificationSystem: _ObjCWebim._ObjCRemoteNotificationSystem) -> _ObjCSessionBuilder {
         var webimRemoteNotificationSystem: Webim.RemoteNotificationSystem?
         switch remoteNotificationSystem {
         case .APNS:
@@ -170,7 +169,7 @@ final class _ObjCSessionBuilder: NSObject {
     }
     
     @objc(setDeviceToken:)
-    func set(deviceToken: String?) -> _ObjCSessionBuilder {
+    public func set(deviceToken: String?) -> _ObjCSessionBuilder {
         sessionBuilder = sessionBuilder.set(deviceToken: deviceToken)
         
         return self
@@ -184,14 +183,14 @@ final class _ObjCSessionBuilder: NSObject {
     }
     
     @objc(setIsVisitorDataClearingEnabled:)
-    func set(isVisitorDataClearingEnabled: Bool) -> _ObjCSessionBuilder {
+    public func set(isVisitorDataClearingEnabled: Bool) -> _ObjCSessionBuilder {
         sessionBuilder = sessionBuilder.set(isVisitorDataClearingEnabled: isVisitorDataClearingEnabled)
         
         return self
     }
     
     @objc(setWebimLogger:verbosityLevel:)
-    func set(webimLogger: _ObjCWebimLogger,
+    public func set(webimLogger: _ObjCWebimLogger,
              verbosityLevel: _ObjCWebimLoggerVerbosityLevel) -> _ObjCSessionBuilder {
         var internalVerbosityLevel: SessionBuilder.WebimLoggerVerbosityLevel?
         switch verbosityLevel {
@@ -215,13 +214,13 @@ final class _ObjCSessionBuilder: NSObject {
     }
     
     @objc(build:)
-    func build() throws -> _ObjCWebimSession {
+    public func build() throws -> _ObjCWebimSession {
         return try _ObjCWebimSession(webimSession: sessionBuilder.build())
     }
     
     // MARK: -
     @objc(WebimLoggerVerbosityLevel)
-    enum _ObjCWebimLoggerVerbosityLevel: Int {
+    public enum _ObjCWebimLoggerVerbosityLevel: Int {
         case VERBOSE
         case DEBUG
         case INFO
