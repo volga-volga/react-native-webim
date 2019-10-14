@@ -11,9 +11,8 @@ yarn add react-native-webim@git+${currentRepoUrl}.git#master
 react-native link react-native-webim
 ```
 
-iOS & android:
-
-- react-native link react-native-webim
+iOS
+- add to PodFile ```pod 'WebimClientLibrary', :git => 'https://github.com/webim/webim-client-sdk-ios.git', :tag => '3.29.0'```
 - pod install
 
 ## Usage
