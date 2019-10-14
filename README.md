@@ -7,11 +7,11 @@ Implementation of [webim sdk](https://webim.ru/) for [react-native](https://gith
 ## Installation
 
 ```
-yarn add react-native-webim
+yarn add react-native-webim@git+${currentRepoUrl}.git#master
 react-native link react-native-webim
 ```
 
-iOS:
+iOS & android:
 
 - react-native link react-native-webim
 - pod install
