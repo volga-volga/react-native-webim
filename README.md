@@ -13,10 +13,8 @@ react-native link react-native-webim
 
 iOS:
 
- - add `Libraries/RNWebim/Libraries/WebimClientLibrary/Product/WebimClientLibrary.framework` into **Link Binary With Libraries**
- - to be done
- - move `WebimClientLibrary.framework` and `SQLite.framework` to **Embedded binaries**
- - create empty swift file in ios project root and agree with creating bridging header.
+- react-native link react-native-webim
+- pod install
 
 ## Usage
 
