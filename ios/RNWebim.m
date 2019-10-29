@@ -1,7 +1,7 @@
 
 #import "RNWebim.h"
 #import <React/RCTLog.h>
-#import "RNWebim-Swift.h" // If use see compile error at this line, to fix repeat compile second time
+#import <RNWebim/RNWebim-Swift.h> // If use see compile error at this line, to fix repeat compile second time
 
 @implementation RNWebim
 
