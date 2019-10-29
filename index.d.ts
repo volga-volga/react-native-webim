@@ -26,7 +26,7 @@ declare module 'webim-react-native' {
 
   export type WebimListener<T> = (msg: T) => void;
 
-  class webim {
+  class RNWebim {
     resumeSession(accountName: string, location: string, acc?: string): Promise<void>;
 
     destroySession(): Promise<void>;
@@ -52,7 +52,7 @@ declare module 'webim-react-native' {
     removeAllListeners(event: string): void;
   }
 
-  const Webim: webim;
+  const Webim: RNWebim;
 
   export default Webim;
 }
