@@ -2,12 +2,14 @@
 #import "RNWebim.h"
 #import <React/RCTLog.h>
 #import <RNWebim/RNWebim-Swift.h> // If use see compile error at this line, to fix repeat compile second time
+@class ProvidedAuthorizationTokenStateListener;
 
 @implementation RNWebim
 
 WebimSession *webimSession;
 MessageStream *stream;
 MessageTracker *tracker;
+ProvidedAuthorizationTokenStateListener *instance;
 
 RCTResponseSenderBlock attachmentResolve;
 RCTResponseSenderBlock attachmentReject;
@@ -35,7 +37,7 @@ RCT_EXPORT_METHOD(resumeSession:(NSString*) accountName location:(NSString*) loc
         sessionBuilder = [sessionBuilder setAccountName:accountName];
         sessionBuilder = [sessionBuilder setLocation:location];
         if (account != nil) {
-            sessionBuilder = [sessionBuilder setVisitorFieldsJSONString:account];
+            sessionBuilder = [sessionBuilder setProvidedAuthorizationTokenStateListener:instance providedAuthorizationToken:account];
         }
         webimSession = [sessionBuilder build:&error];
         if (error) {
