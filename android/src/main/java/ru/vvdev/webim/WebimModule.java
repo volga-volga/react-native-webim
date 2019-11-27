@@ -3,8 +3,8 @@ package ru.vvdev.webim;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.webkit.MimeTypeMap;
 import com.facebook.react.bridge.ActivityEventListener;
 import com.facebook.react.bridge.Arguments;
@@ -32,6 +32,7 @@ import com.webimapp.android.sdk.Operator;
 import com.webimapp.android.sdk.Webim;
 import com.webimapp.android.sdk.WebimError;
 import com.webimapp.android.sdk.WebimSession;
+import com.webimapp.android.sdk.ProvidedAuthorizationTokenStateListener;
 
 public class WebimModule extends ReactContextBaseJavaModule implements MessageListener {
     private static final int FILE_SELECT_CODE = 0;
@@ -42,6 +43,7 @@ public class WebimModule extends ReactContextBaseJavaModule implements MessageLi
     private Callback fileCbFailure;
     private MessageTracker tracker;
     private WebimSession session;
+    private ProvidedAuthorizationTokenStateListener providedAuthorizationTokenStateListener;
 
     WebimModule(ReactApplicationContext context) {
         super(context);
@@ -97,16 +99,14 @@ public class WebimModule extends ReactContextBaseJavaModule implements MessageLi
         return new HashMap<>();
     }
 
-    private void init(String accountName, String location, String account) {
+    private void init(String accountName, String location, String providedAuthorizationToken) {
         Webim.SessionBuilder builder = Webim.newSessionBuilder()
                 .setContext(reactContext)
                 .setAccountName(accountName)
                 .setLocation(location)
+                .setProvidedAuthorizationTokenStateListener(providedAuthorizationTokenStateListener, providedAuthorizationToken)
                 .setPushSystem(Webim.PushSystem.FCM)
                 .setPushToken("none");
-        if (account != null) {
-            builder.setVisitorFieldsJson(account);
-        }
         session = builder.build();
     }
 
