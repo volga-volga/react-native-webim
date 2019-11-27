@@ -19,9 +19,9 @@ function processError(e) {
 }
 
 class RNWebim {
-  static resumeSession(accountName, location, account) {
+  static resumeSession(accountName, location, providedAuthorizationToken) {
     return new Promise((resolve, reject) => {
-      WebimNative.resumeSession(accountName, location, account, e => reject(processError(e)), res => resolve(parseNativeResponse(res)));
+      WebimNative.resumeSession(accountName, location, providedAuthorizationToken, e => reject(processError(e)), res => resolve(parseNativeResponse(res)));
     });
   }
 
