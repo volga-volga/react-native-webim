@@ -35,7 +35,7 @@ import com.webimapp.android.sdk.WebimSession;
 
 public class WebimModule extends ReactContextBaseJavaModule implements MessageListener {
     private static final int FILE_SELECT_CODE = 0;
-    private static final String REACT_CLASS = "webim";
+    private static final String REACT_CLASS = "RNWebim";
     private static ReactApplicationContext reactContext = null;
 
     private Callback fileCbSuccess;

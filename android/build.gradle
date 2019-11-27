@@ -1,33 +1,31 @@
 apply plugin: 'com.android.library'
 
+def safeExtGet(prop, fallback) {
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion safeExtGet('compileSdkVersion', 28)
+    buildToolsVersion safeExtGet('buildToolsVersion', '28.0.3')
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion safeExtGet('minSdkVersion', 16)
+        targetSdkVersion safeExtGet('targetSdkVersion', 28)
         versionCode 1
-        versionName "1.0"
-        ndk {
-            abiFilters "armeabi-v7a", "x86"
-        }
+        versionName "0.0.7"
     }
     lintOptions {
-       warning 'InvalidPackage'
+        warning 'InvalidPackage'
     }
 }
 
-allprojects {
-    repositories {
-        jcenter()
-    }
+repositories {
+    mavenCentral()
 }
 
 dependencies {
-    implementation 'com.webimapp.sdk:webimclientsdkandroid:3.26.2'
+    implementation 'com.webimapp.sdk:webimclientsdkandroid:3.32.5'
     implementation 'com.facebook.react:react-native:+'
     implementation 'com.google.android.gms:play-services-wallet:16.0.0'
-    // todo:
-    implementation "com.android.support:appcompat-v7:25.0.1"
+    implementation "com.android.support:appcompat-v7:$support_version"
 }

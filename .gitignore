@@ -3,3 +3,4 @@
 .vscode
 build
 *.iml
+local.properties
