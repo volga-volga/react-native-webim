@@ -36,6 +36,8 @@ RCT_EXPORT_METHOD(resumeSession:(NSString*) accountName location:(NSString*) loc
         SessionBuilder *sessionBuilder = [Webim newSessionBuilder];
         sessionBuilder = [sessionBuilder setAccountName:accountName];
         sessionBuilder = [sessionBuilder setLocation:location];
+        sessionBuilder = [sessionBuilder setIsVisitorDataClearingEnabled:true];
+        sessionBuilder = [sessionBuilder setIsLocalHistoryStoragingEnabled:false];
         sessionBuilder = [sessionBuilder setProvidedAuthorizationTokenStateListener:providedAuthorizationTokenStateListener providedAuthorizationToken:providedAuthorizationToken];
         webimSession = [sessionBuilder build:&error];
         if (error) {
@@ -78,7 +80,15 @@ RCT_EXPORT_METHOD(destroySession:(RCTResponseSenderBlock) reject resolve:(RCTRes
     }
     stream = nil;
     if (webimSession) {
-        [webimSession pause:&err];
+        [webimSession destroyWithClearVisitorData:&err];
+    }
+    if (err) {
+        reject(@[@{ @"message": [err localizedDescription]}]);
+        return;
+    }
+    webimSession = nil;
+    if (tracker) {
+        [webimSession destroy:&err];
     }
     if (err) {
         reject(@[@{ @"message": [err localizedDescription]}]);
