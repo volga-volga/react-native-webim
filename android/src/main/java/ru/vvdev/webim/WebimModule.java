@@ -305,7 +305,7 @@ public class WebimModule extends ReactContextBaseJavaModule implements MessageLi
     private WritableMap messageToJson(Message msg) {
         final WritableMap map = Arguments.createMap();
         map.putString("id", msg.getId().toString());
-        map.putInt("time", (int) msg.getTime());
+        map.putDouble("time", msg.getTime());
         map.putString("type", msg.getType().toString());
         map.putString("text", msg.getText());
         map.putString("name", msg.getSenderName());
