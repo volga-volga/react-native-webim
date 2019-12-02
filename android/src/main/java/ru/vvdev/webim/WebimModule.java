@@ -104,6 +104,8 @@ public class WebimModule extends ReactContextBaseJavaModule implements MessageLi
                 .setContext(reactContext)
                 .setAccountName(accountName)
                 .setLocation(location)
+                .setClearVisitorData(true)
+                .setStoreHistoryLocally(false)
                 .setProvidedAuthorizationTokenStateListener(providedAuthorizationTokenStateListener, providedAuthorizationToken)
                 .setPushSystem(Webim.PushSystem.FCM)
                 .setPushToken("none");
@@ -111,9 +113,9 @@ public class WebimModule extends ReactContextBaseJavaModule implements MessageLi
     }
 
     @ReactMethod
-    public void resumeSession(String accountName, String location, String account, final Callback errorCallback, final Callback successCallback) {
+    public void resumeSession(String accountName, String location, String providedAuthorizationToken, final Callback errorCallback, final Callback successCallback) {
         if (session == null) {
-            init(accountName, location, account);
+            init(accountName, location, providedAuthorizationToken);
         }
         session.resume();
         session.getStream().startChat();
@@ -127,7 +129,7 @@ public class WebimModule extends ReactContextBaseJavaModule implements MessageLi
         if (session != null) {
             session.getStream().closeChat();
             tracker.destroy();
-            session.destroy();
+            session.destroyWithClearVisitorData();
             session = null;
         }
         successCallback.invoke(Arguments.createMap());
