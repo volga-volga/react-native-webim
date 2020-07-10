@@ -1,7 +1,7 @@
 import { NativeModules, NativeEventEmitter, Platform } from 'react-native';
 
-const { webim: WebimNative } = NativeModules;
-const emitter = new NativeEventEmitter(NativeModules.webim);
+const { RNWebim: WebimNative } = NativeModules;
+const emitter = new NativeEventEmitter(NativeModules.RNWebim);
 
 export const webimEvents = {
   NEW_MESSAGE: 'newMessage',
@@ -18,10 +18,10 @@ function processError(e) {
   return new Error(e.message);
 }
 
-class webim {
-  static resumeSession(accountName, location, account) {
+class RNWebim {
+  static resumeSession(accountName, location, providedAuthorizationToken) {
     return new Promise((resolve, reject) => {
-      WebimNative.resumeSession(accountName, location, account, e => reject(processError(e)), res => resolve(parseNativeResponse(res)));
+      WebimNative.resumeSession(accountName, location, providedAuthorizationToken, e => reject(processError(e)), res => resolve(parseNativeResponse(res)));
     });
   }
 
@@ -72,7 +72,7 @@ class webim {
           [uri, name, mime, extension] = args;
         }
         try {
-          await webim.sendFile(uri, name, mime, extension);
+          await RNWebim.sendFile(uri, name, mime, extension);
           resolve();
         } catch (e) {
           reject(processError(e));
@@ -98,4 +98,4 @@ class webim {
   }
 }
 
-export default webim;
+export default RNWebim;

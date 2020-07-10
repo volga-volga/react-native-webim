@@ -2,21 +2,18 @@
 
 Implementation of [webim sdk](https://webim.ru/) for [react-native](https://github.com/facebook/react-native)
 
-**Important:** last tested react-native version is 59.9
+**Important:** Updated version for RN 0.60+
 
 ## Installation
 
 ```
-yarn add react-native-webim
+yarn add react-native-webim@git+${currentRepoUrl}.git#master
 react-native link react-native-webim
 ```
 
-iOS:
-
- - add `Libraries/RNWebim/Libraries/WebimClientLibrary/Product/WebimClientLibrary.framework` into **Link Binary With Libraries**
- - to be done
- - move `WebimClientLibrary.framework` and `SQLite.framework` to **Embedded binaries**
- - create empty swift file in ios project root and agree with creating bridging header.
+iOS
+- add to PodFile ```pod 'WebimClientLibrary', :git => 'https://github.com/webim/webim-client-sdk-ios.git', :tag => '3.29.0'```
+- pod install
 
 ## Usage
 

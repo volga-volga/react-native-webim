@@ -1,12 +1,15 @@
 
 #import "RNWebim.h"
 #import <React/RCTLog.h>
+#import <RNWebim/RNWebim-Swift.h> // If use see compile error at this line, to fix repeat compile second time
+@class ProvidedAuthorizationTokenStateListener;
 
-@implementation webim
+@implementation RNWebim
 
 WebimSession *webimSession;
 MessageStream *stream;
 MessageTracker *tracker;
+ProvidedAuthorizationTokenStateListener *providedAuthorizationTokenStateListener;
 
 RCTResponseSenderBlock attachmentResolve;
 RCTResponseSenderBlock attachmentReject;
@@ -27,15 +30,15 @@ RCT_EXPORT_MODULE()
     return @[@"newMessage", @"removeMessage", @"changedMessage", @"allMessagesRemoved"];
 }
 
-RCT_EXPORT_METHOD(resumeSession:(NSString*) accountName location:(NSString*) location account:(NSString*) account reject:(RCTResponseSenderBlock) reject resolve:(RCTResponseSenderBlock) resolve) {
+RCT_EXPORT_METHOD(resumeSession:(NSString*) accountName location:(NSString*) location providedAuthorizationToken:(NSString*) providedAuthorizationToken reject:(RCTResponseSenderBlock) reject resolve:(RCTResponseSenderBlock) resolve) {
     NSError *error = nil;
     if (webimSession == nil) {
         SessionBuilder *sessionBuilder = [Webim newSessionBuilder];
         sessionBuilder = [sessionBuilder setAccountName:accountName];
         sessionBuilder = [sessionBuilder setLocation:location];
-        if (account != nil) {
-            sessionBuilder = [sessionBuilder setVisitorFieldsJSONString:account];
-        }
+        sessionBuilder = [sessionBuilder setIsVisitorDataClearingEnabled:true];
+        sessionBuilder = [sessionBuilder setIsLocalHistoryStoragingEnabled:false];
+        sessionBuilder = [sessionBuilder setProvidedAuthorizationTokenStateListener:providedAuthorizationTokenStateListener providedAuthorizationToken:providedAuthorizationToken];
         webimSession = [sessionBuilder build:&error];
         if (error) {
             reject(@[@{ @"message": [error localizedDescription]}]);
@@ -77,7 +80,15 @@ RCT_EXPORT_METHOD(destroySession:(RCTResponseSenderBlock) reject resolve:(RCTRes
     }
     stream = nil;
     if (webimSession) {
-        [webimSession pause:&err];
+        [webimSession destroyWithClearVisitorData:&err];
+    }
+    if (err) {
+        reject(@[@{ @"message": [err localizedDescription]}]);
+        return;
+    }
+    webimSession = nil;
+    if (tracker) {
+        [webimSession destroy:&err];
     }
     if (err) {
         reject(@[@{ @"message": [err localizedDescription]}]);
@@ -90,7 +101,7 @@ RCT_EXPORT_METHOD(getLastMessages:(nonnull NSNumber*)limit reject:(RCTResponseSe
     NSError *err = nil;
     [tracker getLastMessagesByLimit:[limit intValue]
                          completion:^(NSArray<Message *> * _Nonnull arr) {
-                             resolve(@[@{@"messages": [self messagesToJsonArray:arr] }]);
+                            resolve(@[@{@"messages": [self messagesToJsonArray:arr] }]);
                          } error:&err];
     if (err) {
         reject(@[@{@"message": [err localizedDescription]}]);

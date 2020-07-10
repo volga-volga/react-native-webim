@@ -3,8 +3,8 @@ package ru.vvdev.webim;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.webkit.MimeTypeMap;
 import com.facebook.react.bridge.ActivityEventListener;
 import com.facebook.react.bridge.Arguments;
@@ -32,16 +32,18 @@ import com.webimapp.android.sdk.Operator;
 import com.webimapp.android.sdk.Webim;
 import com.webimapp.android.sdk.WebimError;
 import com.webimapp.android.sdk.WebimSession;
+import com.webimapp.android.sdk.ProvidedAuthorizationTokenStateListener;
 
 public class WebimModule extends ReactContextBaseJavaModule implements MessageListener {
     private static final int FILE_SELECT_CODE = 0;
-    private static final String REACT_CLASS = "webim";
+    private static final String REACT_CLASS = "RNWebim";
     private static ReactApplicationContext reactContext = null;
 
     private Callback fileCbSuccess;
     private Callback fileCbFailure;
     private MessageTracker tracker;
     private WebimSession session;
+    private ProvidedAuthorizationTokenStateListener providedAuthorizationTokenStateListener;
 
     WebimModule(ReactApplicationContext context) {
         super(context);
@@ -97,23 +99,23 @@ public class WebimModule extends ReactContextBaseJavaModule implements MessageLi
         return new HashMap<>();
     }
 
-    private void init(String accountName, String location, String account) {
+    private void init(String accountName, String location, String providedAuthorizationToken) {
         Webim.SessionBuilder builder = Webim.newSessionBuilder()
                 .setContext(reactContext)
                 .setAccountName(accountName)
                 .setLocation(location)
+                .setClearVisitorData(true)
+                .setStoreHistoryLocally(false)
+                .setProvidedAuthorizationTokenStateListener(providedAuthorizationTokenStateListener, providedAuthorizationToken)
                 .setPushSystem(Webim.PushSystem.FCM)
                 .setPushToken("none");
-        if (account != null) {
-            builder.setVisitorFieldsJson(account);
-        }
         session = builder.build();
     }
 
     @ReactMethod
-    public void resumeSession(String accountName, String location, String account, final Callback errorCallback, final Callback successCallback) {
+    public void resumeSession(String accountName, String location, String providedAuthorizationToken, final Callback errorCallback, final Callback successCallback) {
         if (session == null) {
-            init(accountName, location, account);
+            init(accountName, location, providedAuthorizationToken);
         }
         session.resume();
         session.getStream().startChat();
@@ -127,7 +129,7 @@ public class WebimModule extends ReactContextBaseJavaModule implements MessageLi
         if (session != null) {
             session.getStream().closeChat();
             tracker.destroy();
-            session.destroy();
+            session.destroyWithClearVisitorData();
             session = null;
         }
         successCallback.invoke(Arguments.createMap());
@@ -303,7 +305,7 @@ public class WebimModule extends ReactContextBaseJavaModule implements MessageLi
     private WritableMap messageToJson(Message msg) {
         final WritableMap map = Arguments.createMap();
         map.putString("id", msg.getId().toString());
-        map.putInt("time", (int) msg.getTime());
+        map.putDouble("time", msg.getTime());
         map.putString("type", msg.getType().toString());
         map.putString("text", msg.getText());
         map.putString("name", msg.getSenderName());
