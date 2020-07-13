@@ -18,10 +18,16 @@ function processError(e) {
   return new Error(e.message);
 }
 
+class Listener {
+  constructor(remove) {
+    this.remove = remove;
+  }
+}
+
 class RNWebim {
-  static resumeSession(accountName, location, providedAuthorizationToken) {
+  static resumeSession(accountName, location, userInfo, authToken) {
     return new Promise((resolve, reject) => {
-      WebimNative.resumeSession(accountName, location, providedAuthorizationToken, e => reject(processError(e)), res => resolve(parseNativeResponse(res)));
+      WebimNative.resumeSession(accountName, location, userInfo, authToken, e => reject(processError(e)), res => resolve(parseNativeResponse(res)));
     });
   }
 
@@ -87,6 +93,7 @@ class RNWebim {
 
   static addListener(event, listener) {
     emitter.addListener(event, listener);
+    return new Listener(() => RNWebim.removeListener(event, listener));
   }
 
   static removeListener(event, listener) {

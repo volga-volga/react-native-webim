@@ -7,13 +7,18 @@ Implementation of [webim sdk](https://webim.ru/) for [react-native](https://gith
 ## Installation
 
 ```
-yarn add react-native-webim@git+${currentRepoUrl}.git#master
-react-native link react-native-webim
+yarn add react-native-webim
 ```
 
 iOS
-- add to PodFile ```pod 'WebimClientLibrary', :git => 'https://github.com/webim/webim-client-sdk-ios.git', :tag => '3.29.0'```
-- pod install
+- add to PodFile
+ ```
+    use_frameworks!
+    pod 'WebimClientLibrary', :git => 'https://github.com/webim/webim-client-sdk-ios.git', :tag => '3.29.0'
+```
+- pod install 
+
+
 
 ## Usage
 
@@ -26,9 +31,11 @@ iOS
 
 - Init events listeners:
 ```js
-webim.addListener(webimEvents.NEW_MESSAGE, ({ msg }) => {
+сonst listener = webim.addListener(webimEvents.NEW_MESSAGE, ({ msg }) => {
     // do something
 });
+// usubscribe
+listener.remove();
 ```
 Supported events: `NEW_MESSAGE, REMOVE_MESSAGE, EDIT_MESSAGE, CLEAR_DIALOG`
 
@@ -124,8 +131,3 @@ acc.hash = await getHash(acc.fields);
 
 await webim.resumeSession('accountName', 'location', JSON.stringify(acc));
 ```
-
-## TODO:
-
-- screenshots for installation guide
-- example

@@ -99,23 +99,28 @@ public class WebimModule extends ReactContextBaseJavaModule implements MessageLi
         return new HashMap<>();
     }
 
-    private void init(String accountName, String location, String providedAuthorizationToken) {
+    private void init(String accountName, String location, String accountJson, String providedAuthorizationToken) {
         Webim.SessionBuilder builder = Webim.newSessionBuilder()
                 .setContext(reactContext)
                 .setAccountName(accountName)
                 .setLocation(location)
-                .setClearVisitorData(true)
-                .setStoreHistoryLocally(false)
-                .setProvidedAuthorizationTokenStateListener(providedAuthorizationTokenStateListener, providedAuthorizationToken)
                 .setPushSystem(Webim.PushSystem.FCM)
                 .setPushToken("none");
+        if (accountJson != null) {
+            builder = builder.setVisitorFieldsJson(accountJson);
+        }
+        if (providedAuthorizationToken != null) {
+            builder = builder.setClearVisitorData(true)
+                    .setStoreHistoryLocally(false)
+                    .setProvidedAuthorizationTokenStateListener(providedAuthorizationTokenStateListener, providedAuthorizationToken);
+        }
         session = builder.build();
     }
 
     @ReactMethod
-    public void resumeSession(String accountName, String location, String providedAuthorizationToken, final Callback errorCallback, final Callback successCallback) {
+    public void resumeSession(String accountName, String location, String accountJson, String providedAuthorizationToken, final Callback errorCallback, final Callback successCallback) {
         if (session == null) {
-            init(accountName, location, providedAuthorizationToken);
+            init(accountName, location, accountJson, providedAuthorizationToken);
         }
         session.resume();
         session.getStream().startChat();

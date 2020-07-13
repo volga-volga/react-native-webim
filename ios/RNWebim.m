@@ -30,15 +30,20 @@ RCT_EXPORT_MODULE()
     return @[@"newMessage", @"removeMessage", @"changedMessage", @"allMessagesRemoved"];
 }
 
-RCT_EXPORT_METHOD(resumeSession:(NSString*) accountName location:(NSString*) location providedAuthorizationToken:(NSString*) providedAuthorizationToken reject:(RCTResponseSenderBlock) reject resolve:(RCTResponseSenderBlock) resolve) {
+RCT_EXPORT_METHOD(resumeSession:(NSString*) accountName location:(NSString*) location account:(NSString*) account providedAuthorizationToken:(NSString*) providedAuthorizationToken reject:(RCTResponseSenderBlock) reject resolve:(RCTResponseSenderBlock) resolve) {
     NSError *error = nil;
     if (webimSession == nil) {
         SessionBuilder *sessionBuilder = [Webim newSessionBuilder];
         sessionBuilder = [sessionBuilder setAccountName:accountName];
         sessionBuilder = [sessionBuilder setLocation:location];
-        sessionBuilder = [sessionBuilder setIsVisitorDataClearingEnabled:true];
-        sessionBuilder = [sessionBuilder setIsLocalHistoryStoragingEnabled:false];
-        sessionBuilder = [sessionBuilder setProvidedAuthorizationTokenStateListener:providedAuthorizationTokenStateListener providedAuthorizationToken:providedAuthorizationToken];
+        if (account != nil) {
+            sessionBuilder = [sessionBuilder setVisitorFieldsJSONString:account];
+        }
+        if (providedAuthorizationToken != nil) {
+            sessionBuilder = [sessionBuilder setIsVisitorDataClearingEnabled:true];
+            sessionBuilder = [sessionBuilder setIsLocalHistoryStoragingEnabled:false];
+            sessionBuilder = [sessionBuilder setProvidedAuthorizationTokenStateListener:providedAuthorizationTokenStateListener providedAuthorizationToken:providedAuthorizationToken];
+        }
         webimSession = [sessionBuilder build:&error];
         if (error) {
             reject(@[@{ @"message": [error localizedDescription]}]);

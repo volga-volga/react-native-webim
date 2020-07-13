@@ -26,6 +26,10 @@ declare module 'react-native-webim' {
 
   export type WebimListener<T> = (msg: T) => void;
 
+  export interface Listener {
+    remove: () => void;
+  }
+
   class RNWebim {
     resumeSession(accountName: string, location: string, providedAuthorizationToken: string): Promise<void>;
 
@@ -45,7 +49,7 @@ declare module 'react-native-webim' {
 
     sendFile(uri: string, name: string, mime: string, extension: string): Promise<void>;
 
-    addListener<T>(event: string, listener: WebimListener<T>): void;
+    addListener<T>(event: string, listener: WebimListener<T>): Listener;
 
     removeListener<T>(event: string, listener: WebimListener<T>): void;
 
