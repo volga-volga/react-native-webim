@@ -3,8 +3,8 @@ package ru.vvdev.webim;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.webkit.MimeTypeMap;
 import com.facebook.react.bridge.ActivityEventListener;
 import com.facebook.react.bridge.Arguments;
@@ -13,6 +13,7 @@ import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
@@ -24,18 +25,22 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.webimapp.android.sdk.FatalErrorHandler;
 import com.webimapp.android.sdk.Message;
 import com.webimapp.android.sdk.MessageListener;
 import com.webimapp.android.sdk.MessageStream;
 import com.webimapp.android.sdk.MessageTracker;
+import com.webimapp.android.sdk.NotFatalErrorHandler;
 import com.webimapp.android.sdk.Operator;
 import com.webimapp.android.sdk.Webim;
 import com.webimapp.android.sdk.WebimError;
 import com.webimapp.android.sdk.WebimSession;
+import com.webimapp.android.sdk.ProvidedAuthorizationTokenStateListener;
 
-public class WebimModule extends ReactContextBaseJavaModule implements MessageListener {
+@SuppressWarnings("unused")
+public class WebimModule extends ReactContextBaseJavaModule implements MessageListener, ProvidedAuthorizationTokenStateListener, FatalErrorHandler, NotFatalErrorHandler {
     private static final int FILE_SELECT_CODE = 0;
-    private static final String REACT_CLASS = "webim";
+    private static final String REACT_CLASS = "RNWebim";
     private static ReactApplicationContext reactContext = null;
 
     private Callback fileCbSuccess;
@@ -63,7 +68,12 @@ public class WebimModule extends ReactContextBaseJavaModule implements MessageLi
                                     ? null
                                     : uri.getLastPathSegment() + "." + extension;
                             if (fileCbSuccess != null) {
-                                fileCbSuccess.invoke(uri.toString(), name, mime, extension);
+                                WritableMap _data = Arguments.createMap();
+                                _data.putString("uri", uri.toString());
+                                _data.putString("name", name);
+                                _data.putString("mime", mime);
+                                _data.putString("extension", extension);
+                                fileCbSuccess.invoke(_data);
                             }
                         } else {
                             fileCbFailure.invoke(getSimpleMap("message", "unknown"));
@@ -97,23 +107,58 @@ public class WebimModule extends ReactContextBaseJavaModule implements MessageLi
         return new HashMap<>();
     }
 
-    private void init(String accountName, String location, String account) {
+    private void init(String accountName, String location, @Nullable String accountJSON, @Nullable String providedAuthorizationToken, @Nullable String appVersion, @Nullable Boolean clearVisitorData, @Nullable Boolean storeHistoryLocally, @Nullable String title, @Nullable String pushToken) {
         Webim.SessionBuilder builder = Webim.newSessionBuilder()
                 .setContext(reactContext)
                 .setAccountName(accountName)
                 .setLocation(location)
-                .setPushSystem(Webim.PushSystem.FCM)
-                .setPushToken("none");
-        if (account != null) {
-            builder.setVisitorFieldsJson(account);
+                .setErrorHandler(this)
+                .setNotFatalErrorHandler(this)
+                .setPushSystem(Webim.PushSystem.FCM);
+        if (pushToken != null) {
+            builder.setPushToken(pushToken);
+        }
+        if (accountJSON != null) {
+            builder.setVisitorFieldsJson(accountJSON);
+        }
+        if (appVersion != null) {
+            builder.setAppVersion(appVersion);
+        }
+        if (clearVisitorData != null) {
+            builder.setClearVisitorData(clearVisitorData);
+        }
+        if (storeHistoryLocally != null) {
+            builder.setStoreHistoryLocally(storeHistoryLocally);
+        }
+        if (title != null) {
+            builder.setTitle(title);
+        }
+        if (providedAuthorizationToken != null) {
+            builder.setProvidedAuthorizationTokenStateListener(this, providedAuthorizationToken);
         }
         session = builder.build();
     }
 
     @ReactMethod
-    public void resumeSession(String accountName, String location, String account, final Callback errorCallback, final Callback successCallback) {
+    public void resumeSession(ReadableMap builderData, final Callback errorCallback, final Callback successCallback) {
+        String accountName = builderData.getString("accountName");
+        String location = builderData.getString("location");
+
+        // optional
+        String accountJSON = builderData.hasKey("accountJSON") ? builderData.getString("accountJSON") : null;
+        String providedAuthorizationToken = builderData.hasKey("providedAuthorizationToken") ? builderData.getString("providedAuthorizationToken") : null;
+        String appVersion = builderData.hasKey("appVersion") ? builderData.getString("appVersion") : null;
+        Boolean clearVisitorData = builderData.hasKey("clearVisitorData") ? builderData.getBoolean("clearVisitorData") : null;
+        Boolean storeHistoryLocally = builderData.hasKey("storeHistoryLocally") ? builderData.getBoolean("storeHistoryLocally") : null;
+        String title = builderData.hasKey("title") ? builderData.getString("title") : null;
+        String pushToken = builderData.hasKey("pushToken") ? builderData.getString("pushToken") : null;
+
         if (session == null) {
-            init(accountName, location, account);
+            init(accountName, location, accountJSON, providedAuthorizationToken, appVersion, clearVisitorData, storeHistoryLocally, title, pushToken);
+        }
+
+        if (session == null) {
+            errorCallback.invoke(getSimpleMap("message", "resume null session"));
         }
         session.resume();
         session.getStream().startChat();
@@ -123,11 +168,15 @@ public class WebimModule extends ReactContextBaseJavaModule implements MessageLi
     }
 
     @ReactMethod
-    public void destroySession(final Callback errorCallback, final Callback successCallback) {
+    public void destroySession(Boolean clearData, final Callback errorCallback, final Callback successCallback) {
         if (session != null) {
             session.getStream().closeChat();
             tracker.destroy();
-            session.destroy();
+            if (clearData) {
+             session.destroyWithClearVisitorData();
+            } else {
+                session.destroy();
+            }
             session = null;
         }
         successCallback.invoke(Arguments.createMap());
@@ -303,7 +352,7 @@ public class WebimModule extends ReactContextBaseJavaModule implements MessageLi
     private WritableMap messageToJson(Message msg) {
         final WritableMap map = Arguments.createMap();
         map.putString("id", msg.getId().toString());
-        map.putInt("time", (int) msg.getTime());
+        map.putDouble("time", msg.getTime());
         map.putString("type", msg.getType().toString());
         map.putString("text", msg.getText());
         map.putString("name", msg.getSenderName());
@@ -349,5 +398,20 @@ public class WebimModule extends ReactContextBaseJavaModule implements MessageLi
         WritableMap map = Arguments.createMap();
         map.putString(key, value);
         return map;
+    }
+
+    @Override
+    public void updateProvidedAuthorizationToken(@NonNull String providedAuthorizationToken) {
+        emitDeviceEvent("tokenUpdated", getSimpleMap("token", providedAuthorizationToken));
+    }
+
+    @Override
+    public void onError(@NonNull WebimError<FatalErrorType> error) {
+        emitDeviceEvent("error", getSimpleMap("message", error.getErrorString()));
+    }
+
+    @Override
+    public void onNotFatalError(@NonNull WebimError<NotFatalErrorType> error) {
+        emitDeviceEvent("error", getSimpleMap("message", error.getErrorString()));
     }
 }

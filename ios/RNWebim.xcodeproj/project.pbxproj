@@ -8,81 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		B3E7B58A1CC2AC0600A0062D /* RNWebim.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNWebim.m */; };
-		D65659C522A156A200B76477 /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65659B822A156A000B76477 /* Department.swift */; };
-		D65659C622A156A200B76477 /* WebimLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65659B922A156A000B76477 /* WebimLogger.swift */; };
-		D65659C722A156A200B76477 /* WebimError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65659BA22A156A000B76477 /* WebimError.swift */; };
-		D65659C822A156A200B76477 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65659BB22A156A100B76477 /* Operator.swift */; };
-		D65659C922A156A200B76477 /* Webim.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65659BC22A156A100B76477 /* Webim.swift */; };
-		D65659CA22A156A200B76477 /* WebimSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65659BD22A156A100B76477 /* WebimSession.swift */; };
-		D65659CB22A156A200B76477 /* MessageTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65659BE22A156A100B76477 /* MessageTracker.swift */; };
-		D65659CC22A156A200B76477 /* WebimRemoteNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65659BF22A156A100B76477 /* WebimRemoteNotification.swift */; };
-		D65659CD22A156A200B76477 /* FatalErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65659C022A156A100B76477 /* FatalErrorHandler.swift */; };
-		D65659CE22A156A200B76477 /* MessageListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65659C122A156A100B76477 /* MessageListener.swift */; };
-		D65659CF22A156A200B76477 /* ProvidedAuthorizationTokenStateListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65659C222A156A100B76477 /* ProvidedAuthorizationTokenStateListener.swift */; };
-		D65659D022A156A200B76477 /* MessageStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65659C322A156A200B76477 /* MessageStream.swift */; };
-		D65659D122A156A200B76477 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65659C422A156A200B76477 /* Message.swift */; };
-		D6565A0C22A16A2800B76477 /* WebimClientLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6565A0B22A16A1100B76477 /* WebimClientLibrary.framework */; };
-		D6A45F8922A1393300B5BB27 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6A45F3622A137AF00B5BB27 /* SQLite.framework */; };
+		D69EFDD624C836CC00728191 /* ProvidedAuthorizationTokenStateListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69EFDC924C836CC00728191 /* ProvidedAuthorizationTokenStateListener.swift */; };
+		D69EFDD724C836CC00728191 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69EFDCA24C836CC00728191 /* Operator.swift */; };
+		D69EFDD824C836CC00728191 /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69EFDCB24C836CC00728191 /* Department.swift */; };
+		D69EFDD924C836CC00728191 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69EFDCC24C836CC00728191 /* Message.swift */; };
+		D69EFDDA24C836CC00728191 /* WebimSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69EFDCD24C836CC00728191 /* WebimSession.swift */; };
+		D69EFDDB24C836CC00728191 /* WebimError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69EFDCE24C836CC00728191 /* WebimError.swift */; };
+		D69EFDDC24C836CC00728191 /* MessageTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69EFDCF24C836CC00728191 /* MessageTracker.swift */; };
+		D69EFDDD24C836CC00728191 /* WebimLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69EFDD024C836CC00728191 /* WebimLogger.swift */; };
+		D69EFDDE24C836CC00728191 /* WebimRemoteNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69EFDD124C836CC00728191 /* WebimRemoteNotification.swift */; };
+		D69EFDDF24C836CC00728191 /* FatalErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69EFDD224C836CC00728191 /* FatalErrorHandler.swift */; };
+		D69EFDE024C836CC00728191 /* MessageListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69EFDD324C836CC00728191 /* MessageListener.swift */; };
+		D69EFDE124C836CC00728191 /* Webim.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69EFDD424C836CC00728191 /* Webim.swift */; };
+		D69EFDE224C836CC00728191 /* MessageStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69EFDD524C836CC00728191 /* MessageStream.swift */; };
+		D69EFDE424C841AB00728191 /* RNWebim.h in Headers */ = {isa = PBXBuildFile; fileRef = B3E7B5881CC2AC0600A0062D /* RNWebim.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D69EFDE524C841B000728191 /* RNWebim-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = D69EFDC824C836CB00728191 /* RNWebim-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D6565A0A22A16A1100B76477 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D6565A0622A16A1100B76477 /* WebimClientLibrary.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8FD2427A200CDB18007EB9CB;
-			remoteInfo = WebimClientLibrary;
-		};
-		D6A45F3522A137AF00B5BB27 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D6A45F2B22A137AE00B5BB27 /* SQLite.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EE247AD31C3F04ED00AE3E12;
-			remoteInfo = "SQLite iOS";
-		};
-		D6A45F3722A137AF00B5BB27 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D6A45F2B22A137AE00B5BB27 /* SQLite.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EE247ADD1C3F04ED00AE3E12;
-			remoteInfo = "SQLiteTests iOS";
-		};
-		D6A45F3922A137AF00B5BB27 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D6A45F2B22A137AE00B5BB27 /* SQLite.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EE247B3C1C3F3ED000AE3E12;
-			remoteInfo = "SQLite Mac";
-		};
-		D6A45F3B22A137AF00B5BB27 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D6A45F2B22A137AE00B5BB27 /* SQLite.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EE247B451C3F3ED000AE3E12;
-			remoteInfo = "SQLiteTests Mac";
-		};
-		D6A45F3D22A137AF00B5BB27 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D6A45F2B22A137AE00B5BB27 /* SQLite.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 03A65E5A1C6BB0F50062603F;
-			remoteInfo = "SQLite tvOS";
-		};
-		D6A45F3F22A137AF00B5BB27 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D6A45F2B22A137AE00B5BB27 /* SQLite.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 03A65E631C6BB0F60062603F;
-			remoteInfo = "SQLiteTests tvOS";
-		};
-		D6A45F4122A137AF00B5BB27 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D6A45F2B22A137AE00B5BB27 /* SQLite.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A121AC451CA35C79005A31D1;
-			remoteInfo = "SQLite watchOS";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		58B511D91A9E6C8500147676 /* CopyFiles */ = {
@@ -100,23 +41,21 @@
 		134814201AA4EA6300B7C361 /* libRNWebim.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNWebim.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E7B5881CC2AC0600A0062D /* RNWebim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNWebim.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RNWebim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNWebim.m; sourceTree = "<group>"; };
-		D65659AF22A1569F00B76477 /* RNWebim-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNWebim-Bridging-Header.h"; sourceTree = "<group>"; };
-		D65659B822A156A000B76477 /* Department.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Department.swift; path = swift_bridging/Department.swift; sourceTree = "<group>"; };
-		D65659B922A156A000B76477 /* WebimLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebimLogger.swift; path = swift_bridging/WebimLogger.swift; sourceTree = "<group>"; };
-		D65659BA22A156A000B76477 /* WebimError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebimError.swift; path = swift_bridging/WebimError.swift; sourceTree = "<group>"; };
-		D65659BB22A156A100B76477 /* Operator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Operator.swift; path = swift_bridging/Operator.swift; sourceTree = "<group>"; };
-		D65659BC22A156A100B76477 /* Webim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Webim.swift; path = swift_bridging/Webim.swift; sourceTree = "<group>"; };
-		D65659BD22A156A100B76477 /* WebimSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebimSession.swift; path = swift_bridging/WebimSession.swift; sourceTree = "<group>"; };
-		D65659BE22A156A100B76477 /* MessageTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageTracker.swift; path = swift_bridging/MessageTracker.swift; sourceTree = "<group>"; };
-		D65659BF22A156A100B76477 /* WebimRemoteNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebimRemoteNotification.swift; path = swift_bridging/WebimRemoteNotification.swift; sourceTree = "<group>"; };
-		D65659C022A156A100B76477 /* FatalErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FatalErrorHandler.swift; path = swift_bridging/FatalErrorHandler.swift; sourceTree = "<group>"; };
-		D65659C122A156A100B76477 /* MessageListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageListener.swift; path = swift_bridging/MessageListener.swift; sourceTree = "<group>"; };
-		D65659C222A156A100B76477 /* ProvidedAuthorizationTokenStateListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProvidedAuthorizationTokenStateListener.swift; path = swift_bridging/ProvidedAuthorizationTokenStateListener.swift; sourceTree = "<group>"; };
-		D65659C322A156A200B76477 /* MessageStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageStream.swift; path = swift_bridging/MessageStream.swift; sourceTree = "<group>"; };
-		D65659C422A156A200B76477 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = swift_bridging/Message.swift; sourceTree = "<group>"; };
 		D65659D222A158C400B76477 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D6565A0622A16A1100B76477 /* WebimClientLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = WebimClientLibrary.xcodeproj; path = libs/Webim/WebimClientLibrary.xcodeproj; sourceTree = "<group>"; };
-		D6A45F2B22A137AE00B5BB27 /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = libs/Sqlite/SQLite.xcodeproj; sourceTree = "<group>"; };
+		D69EFDC824C836CB00728191 /* RNWebim-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNWebim-Bridging-Header.h"; sourceTree = "<group>"; };
+		D69EFDC924C836CC00728191 /* ProvidedAuthorizationTokenStateListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProvidedAuthorizationTokenStateListener.swift; sourceTree = "<group>"; };
+		D69EFDCA24C836CC00728191 /* Operator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operator.swift; sourceTree = "<group>"; };
+		D69EFDCB24C836CC00728191 /* Department.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
+		D69EFDCC24C836CC00728191 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		D69EFDCD24C836CC00728191 /* WebimSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebimSession.swift; sourceTree = "<group>"; };
+		D69EFDCE24C836CC00728191 /* WebimError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebimError.swift; sourceTree = "<group>"; };
+		D69EFDCF24C836CC00728191 /* MessageTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTracker.swift; sourceTree = "<group>"; };
+		D69EFDD024C836CC00728191 /* WebimLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebimLogger.swift; sourceTree = "<group>"; };
+		D69EFDD124C836CC00728191 /* WebimRemoteNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebimRemoteNotification.swift; sourceTree = "<group>"; };
+		D69EFDD224C836CC00728191 /* FatalErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FatalErrorHandler.swift; sourceTree = "<group>"; };
+		D69EFDD324C836CC00728191 /* MessageListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListener.swift; sourceTree = "<group>"; };
+		D69EFDD424C836CC00728191 /* Webim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Webim.swift; sourceTree = "<group>"; };
+		D69EFDD524C836CC00728191 /* MessageStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageStream.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,8 +63,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6A45F8922A1393300B5BB27 /* SQLite.framework in Frameworks */,
-				D6565A0C22A16A2800B76477 /* WebimClientLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,57 +80,25 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				D6A45F2422A1379100B5BB27 /* Libraries */,
 				B3E7B5881CC2AC0600A0062D /* RNWebim.h */,
 				B3E7B5891CC2AC0600A0062D /* RNWebim.m */,
-				D65659B822A156A000B76477 /* Department.swift */,
-				D65659C022A156A100B76477 /* FatalErrorHandler.swift */,
-				D65659C422A156A200B76477 /* Message.swift */,
-				D65659C122A156A100B76477 /* MessageListener.swift */,
-				D65659C322A156A200B76477 /* MessageStream.swift */,
-				D65659BE22A156A100B76477 /* MessageTracker.swift */,
-				D65659BB22A156A100B76477 /* Operator.swift */,
-				D65659C222A156A100B76477 /* ProvidedAuthorizationTokenStateListener.swift */,
-				D65659BC22A156A100B76477 /* Webim.swift */,
-				D65659BA22A156A000B76477 /* WebimError.swift */,
-				D65659B922A156A000B76477 /* WebimLogger.swift */,
-				D65659BF22A156A100B76477 /* WebimRemoteNotification.swift */,
-				D65659BD22A156A100B76477 /* WebimSession.swift */,
+				D69EFDCB24C836CC00728191 /* Department.swift */,
+				D69EFDD224C836CC00728191 /* FatalErrorHandler.swift */,
+				D69EFDCC24C836CC00728191 /* Message.swift */,
+				D69EFDD324C836CC00728191 /* MessageListener.swift */,
+				D69EFDD524C836CC00728191 /* MessageStream.swift */,
+				D69EFDCF24C836CC00728191 /* MessageTracker.swift */,
+				D69EFDCA24C836CC00728191 /* Operator.swift */,
+				D69EFDC924C836CC00728191 /* ProvidedAuthorizationTokenStateListener.swift */,
+				D69EFDD424C836CC00728191 /* Webim.swift */,
+				D69EFDCE24C836CC00728191 /* WebimError.swift */,
+				D69EFDD024C836CC00728191 /* WebimLogger.swift */,
+				D69EFDD124C836CC00728191 /* WebimRemoteNotification.swift */,
+				D69EFDCD24C836CC00728191 /* WebimSession.swift */,
 				134814211AA4EA7D00B7C361 /* Products */,
 				D6A45F7F22A1392900B5BB27 /* Frameworks */,
-				D65659AF22A1569F00B76477 /* RNWebim-Bridging-Header.h */,
+				D69EFDC824C836CB00728191 /* RNWebim-Bridging-Header.h */,
 			);
-			sourceTree = "<group>";
-		};
-		D6565A0722A16A1100B76477 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D6565A0B22A16A1100B76477 /* WebimClientLibrary.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D6A45F2422A1379100B5BB27 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				D6565A0622A16A1100B76477 /* WebimClientLibrary.xcodeproj */,
-				D6A45F2B22A137AE00B5BB27 /* SQLite.xcodeproj */,
-			);
-			name = Libraries;
-			sourceTree = "<group>";
-		};
-		D6A45F2C22A137AE00B5BB27 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D6A45F3622A137AF00B5BB27 /* SQLite.framework */,
-				D6A45F3822A137AF00B5BB27 /* SQLiteTests iOS.xctest */,
-				D6A45F3A22A137AF00B5BB27 /* SQLite.framework */,
-				D6A45F3C22A137AF00B5BB27 /* SQLiteTests Mac.xctest */,
-				D6A45F3E22A137AF00B5BB27 /* SQLite.framework */,
-				D6A45F4022A137AF00B5BB27 /* SQLiteTests tvOS.xctest */,
-				D6A45F4222A137AF00B5BB27 /* SQLite.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		D6A45F7F22A1392900B5BB27 /* Frameworks */ = {
@@ -206,11 +111,24 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		D69EFDE324C841A300728191 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D69EFDE424C841AB00728191 /* RNWebim.h in Headers */,
+				D69EFDE524C841B000728191 /* RNWebim-Bridging-Header.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		58B511DA1A9E6C8500147676 /* RNWebim */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RNWebim" */;
 			buildPhases = (
+				D69EFDE324C841A300728191 /* Headers */,
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
 				58B511D91A9E6C8500147676 /* CopyFiles */,
@@ -235,7 +153,7 @@
 				TargetAttributes = {
 					58B511DA1A9E6C8500147676 = {
 						CreatedOnToolsVersion = 6.1.1;
-						LastSwiftMigration = 1020;
+						LastSwiftMigration = 1150;
 					};
 				};
 			};
@@ -250,16 +168,6 @@
 			mainGroup = 58B511D21A9E6C8500147676;
 			productRefGroup = 58B511D21A9E6C8500147676;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = D6A45F2C22A137AE00B5BB27 /* Products */;
-					ProjectRef = D6A45F2B22A137AE00B5BB27 /* SQLite.xcodeproj */;
-				},
-				{
-					ProductGroup = D6565A0722A16A1100B76477 /* Products */;
-					ProjectRef = D6565A0622A16A1100B76477 /* WebimClientLibrary.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				58B511DA1A9E6C8500147676 /* RNWebim */,
@@ -267,84 +175,25 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		D6565A0B22A16A1100B76477 /* WebimClientLibrary.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = WebimClientLibrary.framework;
-			remoteRef = D6565A0A22A16A1100B76477 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D6A45F3622A137AF00B5BB27 /* SQLite.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SQLite.framework;
-			remoteRef = D6A45F3522A137AF00B5BB27 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D6A45F3822A137AF00B5BB27 /* SQLiteTests iOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "SQLiteTests iOS.xctest";
-			remoteRef = D6A45F3722A137AF00B5BB27 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D6A45F3A22A137AF00B5BB27 /* SQLite.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SQLite.framework;
-			remoteRef = D6A45F3922A137AF00B5BB27 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D6A45F3C22A137AF00B5BB27 /* SQLiteTests Mac.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "SQLiteTests Mac.xctest";
-			remoteRef = D6A45F3B22A137AF00B5BB27 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D6A45F3E22A137AF00B5BB27 /* SQLite.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SQLite.framework;
-			remoteRef = D6A45F3D22A137AF00B5BB27 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D6A45F4022A137AF00B5BB27 /* SQLiteTests tvOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "SQLiteTests tvOS.xctest";
-			remoteRef = D6A45F3F22A137AF00B5BB27 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D6A45F4222A137AF00B5BB27 /* SQLite.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SQLite.framework;
-			remoteRef = D6A45F4122A137AF00B5BB27 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXSourcesBuildPhase section */
 		58B511D71A9E6C8500147676 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D65659CE22A156A200B76477 /* MessageListener.swift in Sources */,
-				D65659CD22A156A200B76477 /* FatalErrorHandler.swift in Sources */,
-				D65659CF22A156A200B76477 /* ProvidedAuthorizationTokenStateListener.swift in Sources */,
-				D65659CB22A156A200B76477 /* MessageTracker.swift in Sources */,
+				D69EFDDC24C836CC00728191 /* MessageTracker.swift in Sources */,
+				D69EFDD624C836CC00728191 /* ProvidedAuthorizationTokenStateListener.swift in Sources */,
+				D69EFDD724C836CC00728191 /* Operator.swift in Sources */,
+				D69EFDDB24C836CC00728191 /* WebimError.swift in Sources */,
+				D69EFDD924C836CC00728191 /* Message.swift in Sources */,
+				D69EFDE224C836CC00728191 /* MessageStream.swift in Sources */,
+				D69EFDDD24C836CC00728191 /* WebimLogger.swift in Sources */,
+				D69EFDDF24C836CC00728191 /* FatalErrorHandler.swift in Sources */,
+				D69EFDE124C836CC00728191 /* Webim.swift in Sources */,
+				D69EFDE024C836CC00728191 /* MessageListener.swift in Sources */,
+				D69EFDDE24C836CC00728191 /* WebimRemoteNotification.swift in Sources */,
+				D69EFDD824C836CC00728191 /* Department.swift in Sources */,
+				D69EFDDA24C836CC00728191 /* WebimSession.swift in Sources */,
 				B3E7B58A1CC2AC0600A0062D /* RNWebim.m in Sources */,
-				D65659C722A156A200B76477 /* WebimError.swift in Sources */,
-				D65659CA22A156A200B76477 /* WebimSession.swift in Sources */,
-				D65659CC22A156A200B76477 /* WebimRemoteNotification.swift in Sources */,
-				D65659C922A156A200B76477 /* Webim.swift in Sources */,
-				D65659C822A156A200B76477 /* Operator.swift in Sources */,
-				D65659C522A156A200B76477 /* Department.swift in Sources */,
-				D65659D022A156A200B76477 /* MessageStream.swift in Sources */,
-				D65659C622A156A200B76477 /* WebimLogger.swift in Sources */,
-				D65659D122A156A200B76477 /* Message.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +203,7 @@
 		58B511ED1A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -371,6 +221,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -398,6 +249,7 @@
 		58B511EE1A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -415,6 +267,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
