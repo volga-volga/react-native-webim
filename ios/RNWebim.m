@@ -2,14 +2,12 @@
 #import "RNWebim.h"
 #import <React/RCTLog.h>
 #import <RNWebim/RNWebim-Swift.h> // If use see compile error at this line, to fix repeat compile second time
-@class ProvidedAuthorizationTokenStateListener;
 
 @implementation RNWebim
 
 WebimSession *webimSession;
 MessageStream *stream;
 MessageTracker *tracker;
-ProvidedAuthorizationTokenStateListener *providedAuthorizationTokenStateListener;
 
 RCTResponseSenderBlock attachmentResolve;
 RCTResponseSenderBlock attachmentReject;
@@ -27,23 +25,51 @@ RCTResponseSenderBlock rateOperatorReject;
 RCT_EXPORT_MODULE()
 
 - (NSArray<NSString *> *)supportedEvents {
-    return @[@"newMessage", @"removeMessage", @"changedMessage", @"allMessagesRemoved"];
+    return @[@"newMessage", @"removeMessage", @"changedMessage", @"allMessagesRemoved", @"tokenUpdated", @"error"];
 }
 
-RCT_EXPORT_METHOD(resumeSession:(NSString*) accountName location:(NSString*) location account:(NSString*) account providedAuthorizationToken:(NSString*) providedAuthorizationToken reject:(RCTResponseSenderBlock) reject resolve:(RCTResponseSenderBlock) resolve) {
+RCT_EXPORT_METHOD(resumeSession:(NSDictionary*) builderData reject:(RCTResponseSenderBlock) reject resolve:(RCTResponseSenderBlock) resolve) {
     NSError *error = nil;
     if (webimSession == nil) {
         SessionBuilder *sessionBuilder = [Webim newSessionBuilder];
+        NSString* accountName = [builderData valueForKey:@"accountName"];
+        NSString* location = [builderData valueForKey:@"location"];
+
+        // optional
+        NSString* accountJSON = [builderData valueForKey:@"accountJSON"];
+        NSString* providedAuthorizationToken = [builderData valueForKey: @"providedAuthorizationToken"];
+        NSString* appVersion = [builderData valueForKey:@"appVersion"];
+        NSNumber* clearVisitorData = [builderData valueForKey:@"clearVisitorData"];
+        NSNumber* storeHistoryLocally = [builderData valueForKey:@"storeHistoryLocally"];
+        NSString* title = [builderData valueForKey:@"title"];
+        NSString* pushToken = [builderData valueForKey:@"pushToken"];
         sessionBuilder = [sessionBuilder setAccountName:accountName];
         sessionBuilder = [sessionBuilder setLocation:location];
-        if (account != nil) {
-            sessionBuilder = [sessionBuilder setVisitorFieldsJSONString:account];
+        sessionBuilder = [sessionBuilder setFatalErrorHandler:(id<FatalErrorHandler>)self];
+
+        if (accountJSON != nil) {
+            sessionBuilder = [sessionBuilder setVisitorFieldsJSONString:accountJSON];
         }
         if (providedAuthorizationToken != nil) {
-            sessionBuilder = [sessionBuilder setIsVisitorDataClearingEnabled:true];
-            sessionBuilder = [sessionBuilder setIsLocalHistoryStoragingEnabled:false];
-            sessionBuilder = [sessionBuilder setProvidedAuthorizationTokenStateListener:providedAuthorizationTokenStateListener providedAuthorizationToken:providedAuthorizationToken];
+            sessionBuilder = [sessionBuilder setProvidedAuthorizationTokenStateListener:(id<ProvidedAuthorizationTokenStateListener>)self providedAuthorizationToken:providedAuthorizationToken];
         }
+        if (appVersion != nil) {
+            sessionBuilder = [sessionBuilder setAppVersion:appVersion];
+        }
+        if (clearVisitorData != nil) {
+            sessionBuilder = [sessionBuilder setIsVisitorDataClearingEnabled:[clearVisitorData boolValue]];
+        }
+        if (storeHistoryLocally != nil) {
+            sessionBuilder = [sessionBuilder setIsLocalHistoryStoragingEnabled:[storeHistoryLocally boolValue]];
+        }
+        if (title != nil) {
+            sessionBuilder = [sessionBuilder setPageTitle:title];
+        }
+        if (pushToken != nil) {
+            sessionBuilder = [sessionBuilder setDeviceToken:pushToken];
+        }
+        sessionBuilder = [sessionBuilder setIsVisitorDataClearingEnabled:true];
+        sessionBuilder = [sessionBuilder setIsLocalHistoryStoragingEnabled:false];
         webimSession = [sessionBuilder build:&error];
         if (error) {
             reject(@[@{ @"message": [error localizedDescription]}]);
@@ -61,7 +87,7 @@ RCT_EXPORT_METHOD(resumeSession:(NSString*) accountName location:(NSString*) loc
         reject(@[@{ @"message": [error localizedDescription]}]);
         return;
     }
-    tracker = [stream newMessageTrackerWithMessageListener:self error:&error];
+    tracker = [stream newMessageTrackerWithMessageListener:(id<MessageListener>)self error:&error];
     if (error) {
         reject(@[@{ @"message": [error localizedDescription]}]);
         return;
@@ -74,7 +100,7 @@ RCT_EXPORT_METHOD(resumeSession:(NSString*) accountName location:(NSString*) loc
     resolve(@[@{}]);
 }
 
-RCT_EXPORT_METHOD(destroySession:(RCTResponseSenderBlock) reject resolve:(RCTResponseSenderBlock) resolve) {
+RCT_EXPORT_METHOD(destroySession:(NSNumber*) clearUserData reject:(RCTResponseSenderBlock) reject resolve:(RCTResponseSenderBlock) resolve) {
     NSError *err = nil;
     if (stream) {
         [stream closeChat:&err];
@@ -85,7 +111,11 @@ RCT_EXPORT_METHOD(destroySession:(RCTResponseSenderBlock) reject resolve:(RCTRes
     }
     stream = nil;
     if (webimSession) {
-        [webimSession destroyWithClearVisitorData:&err];
+        if ([clearUserData boolValue]) {
+            [webimSession destroyWithClearVisitorData:&err];
+        } else {
+            [webimSession destroy:&err];
+        }
     }
     if (err) {
         reject(@[@{ @"message": [err localizedDescription]}]);
@@ -141,7 +171,7 @@ RCT_EXPORT_METHOD(rateOperator:(NSNumber*) rating reject:(RCTResponseSenderBlock
         NSError *err = nil;
         Operator* operator = [stream getCurrentOperator];
         [stream rateOperatorWithID: [operator getID] byRating:[rating intValue]
-                 completionHandler:self error:&err];
+                 completionHandler:(id<RateOperatorCompletionHandler>)self error:&err];
         if (err) {
             reject(@[@{ @"message": [err localizedDescription] }]);
         } else {
@@ -184,7 +214,7 @@ RCT_EXPORT_METHOD(sendFile:(NSString*) uri name:(NSString*) name mime:(NSString*
     NSString *_id = [stream sendFile:imageData
                             filename:name
                             mimeType:mime
-                   completionHandler:self
+                   completionHandler:(id<SendFileCompletionHandler>) self
                                error:&err];
     if (err) {
         reject(@[@{ @"message": err.localizedDescription }]);
@@ -378,6 +408,14 @@ RCT_EXPORT_METHOD(send:(NSString*) message reject:(RCTResponseSenderBlock) rejec
 -(void)clearRateResolvers {
     rateOperatorReject = nil;
     rateOperatorResolve = nil;
+}
+
+- (void)updateProvidedAuthorizationToken:(NSString * _Nonnull)providedAuthorizationToken {
+    [self sendEventWithName:@"tokenUpdated" body:@{@"token": providedAuthorizationToken}];
+}
+
+- (void)onError:(WebimError * _Nonnull)error {
+    [self sendEventWithName:@"error" body:@{@"message": @"err"}];
 }
 
 @end

@@ -1,16 +1,24 @@
 {
-  "name": "react-native-webim",
+  "name": "webim-react-native",
   "version": "0.0.9",
-  "author": "AlfClausen",
+  "author": "Nikita Sirotkin",
   "license": "MIT",
   "description": "RN Webim implementation",
-  "main": "index.js",
+  "main": "build/index.ts",
+  "scripts": {
+    "prepublish": "tsc"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/AlfClausen/react-native-webim"
   },
   "devDependencies": {
-    "react": "^16.9.0",
-    "react-native": "^0.61.0"
+    "@types/react": "*",
+    "@types/react-native": "*",
+    "typescript": "^3.8.3"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
   }
 }
