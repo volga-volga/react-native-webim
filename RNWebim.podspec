@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.homepage     = package['repository']['url']
 
   s.requires_arc   = true
-  s.platform       = :ios, '10.0'
+  s.platform       = :ios, '9.0'
 
   s.preserve_paths = 'LICENSE', 'README.md', 'package.json', 'index.js'
   s.source_files = "ios/*.{h,m,swift}"

@@ -7,7 +7,7 @@ Implementation of [webim sdk](https://webim.ru/) for [react-native](https://gith
 ## Installation
 
 ```
-yarn add react-native-webim
+yarn add webim-react-native
 ```
 
 iOS

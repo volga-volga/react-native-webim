@@ -1,7 +1,6 @@
 .DS_Store
 .idea
 .vscode
-/js
 build
 *.iml
 local.properties
