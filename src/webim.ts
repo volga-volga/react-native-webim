@@ -58,13 +58,20 @@ export class RNWebim {
     });
   }
 
-  static getAllMessages(): Promise<{ messages: WebimMessage[] }> {
+  /*
+  static getUnreadMessagesCounter(): Promise<{ messages: WebimMessage[] }> {
     return new Promise((resolve, reject) => {
-      WebimNative.getAllMessages(
+      WebimNative.getUnreadMessagesCounter(
         (error: NativeError) => reject(processError(error)),
         (messages: { messages: WebimMessage[] }) => resolve(messages),
       );
     });
+  }*/
+
+  static getUnreadMessageCounter(): Promise<number> {
+    return new Promise((resolve, reject) => {
+      WebimNative.getUnreadByVisitorTimestamp();
+    })
   }
 
   static send(message: string) {
