@@ -57,15 +57,15 @@ public final class _ObjCDepartment: NSObject {
     @objc(getDepartmentOnlineStatus)
     func getDepartmentOnlineStatus() -> _ObjCDepartmentOnlineStatus {
         switch department.getDepartmentOnlineStatus() {
-        case .BUSY_OFFLINE:
+        case .busyOffline:
             return .BUSY_OFFLINE
-        case .BUSY_ONLINE:
+        case .busyOnline:
             return .BUSY_ONLINE
-        case .OFFLINE:
+        case .offline:
             return .OFFLINE
-        case .ONLINE:
+        case .online:
             return .ONLINE
-        case .UNKNOWN:
+        case .unknown:
             return .UNKNOWN
         }
     }

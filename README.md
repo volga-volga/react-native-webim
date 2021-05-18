@@ -14,7 +14,7 @@ iOS
 - add to PodFile
  ```
     use_frameworks!
-    pod 'WebimClientLibrary', :git => 'https://github.com/webim/webim-client-sdk-ios.git', :tag => '3.29.0'
+    pod 'WebimClientLibrary', :git => 'https://github.com/webim/webim-client-sdk-ios.git', :tag => '3.34.4'
 ```
 - pod install 
 

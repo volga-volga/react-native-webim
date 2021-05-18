@@ -389,8 +389,8 @@ RCT_EXPORT_METHOD(send:(NSString*) message reject:(RCTResponseSenderBlock) rejec
 -(NSMutableArray<NSDictionary*>*)messagesToJsonArray: (NSArray<Message *>* _Nonnull) arr {
     NSMutableArray<NSDictionary*>* messages = [[NSMutableArray alloc] init];
     for (int i = 0; i < [arr count]; ++i) {
-        Message* msg = [arr objectAtIndex:i];
-        [messages addObject:[self messageToJson: msg]];
+        Message* message = [arr objectAtIndex:i];
+        [messages addObject:[self messageToJson: message]];
     }
     return messages;
 }

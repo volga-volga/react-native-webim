@@ -48,15 +48,15 @@ public final class _ObjCWebimError: NSObject {
     @objc(getErrorType)
     func getErrorType() -> _ObjCFatalErrorType {
         switch webimError.getErrorType() {
-        case .ACCOUNT_BLOCKED:
+        case .accountBlocked:
             return .ACCOUNT_BLOCKED
-        case .PROVIDED_VISITOR_FIELDS_EXPIRED:
+        case .providedVisitorFieldsExpired:
             return .PROVIDED_VISITOR_FIELDS_EXPIRED
-        case .UNKNOWN:
+        case .unknown:
             return .UNKNOWN
-        case .VISITOR_BANNED:
+        case .visitorBanned:
             return .VISITOR_BANNED
-        case .WRONG_PROVIDED_VISITOR_HASH:
+        case .wrongProvidedVisitorHash:
             return .WRONG_PROVIDED_VISITOR_HASH
         }
     }

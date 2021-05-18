@@ -81,12 +81,12 @@ public final class _ObjCMessageTracker: NSObject {
     }
     
     @objc(resetToMessage:error:)
-    public func resetTo(message: _ObjCMessage) throws {
+    func resetTo(message: _ObjCMessage) throws {
         try messageTracker.resetTo(message: message.message)
     }
     
     @objc(destroy:)
-    public func destroy() throws {
+    func destroy() throws {
         try messageTracker.destroy()
     }
     
