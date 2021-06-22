@@ -1,12 +1,12 @@
 {
   "name": "webim-react-native",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Nikita Sirotkin",
   "license": "MIT",
   "description": "RN Webim implementation",
   "main": "js/index.js",
   "scripts": {
-    "prepare": "rm -rf js && tsc"
+    "prepublishOnly": "rm -rf js && tsc"
   },
   "repository": {
     "type": "git",
