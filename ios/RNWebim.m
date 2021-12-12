@@ -67,6 +67,7 @@ RCT_EXPORT_METHOD(resumeSession:(NSDictionary*) builderData reject:(RCTResponseS
         }
         if (pushToken != nil) {
             sessionBuilder = [sessionBuilder setDeviceToken:pushToken];
+            sessionBuilder = [sessionBuilder setRemoteNotificationSystem:0];
         }
         sessionBuilder = [sessionBuilder setIsVisitorDataClearingEnabled:true];
         sessionBuilder = [sessionBuilder setIsLocalHistoryStoragingEnabled:false];
